@@ -59,7 +59,7 @@ export const Cart = ({ route, navigation }: any) => {
         <></>
       )}
       <View style={styles.info}>
-        <StyledText grey style={{ fontWeight: 'bold' }} children={`Total ${totalItems} items`} />
+        <StyledText gray30 style={{ fontWeight: 'bold' }} children={`Total ${totalItems} items`} />
         <StyledText h4 children={`USD ${totalPrice}`} />
       </View>
 

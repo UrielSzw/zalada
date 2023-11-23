@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 9.5,
     backgroundColor: theme.colors.white,
-    borderColor: theme.colors.greyDark1,
+    borderColor: theme.colors.gray40,
     borderWidth: 1,
   },
   big: {
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.error,
   },
   greyBackground: {
-    backgroundColor: theme.colors.grey,
+    backgroundColor: theme.colors.gray30,
   },
   greenBackground: {
     backgroundColor: theme.colors.green,

@@ -10,7 +10,7 @@ interface Props extends TextProps {
   h4?: boolean;
   white?: boolean;
   lineHeightPrimary?: boolean;
-  grey?: boolean;
+  gray30?: boolean;
   green?: boolean;
   tapbar?: boolean;
   children: string | number;
@@ -25,7 +25,7 @@ export const StyledText: React.FC<Props> = ({
   h4,
   white,
   lineHeightPrimary,
-  grey,
+  gray30,
   green,
   tapbar,
   children,
@@ -42,7 +42,7 @@ export const StyledText: React.FC<Props> = ({
     h3 && styles.h3,
     h4 && styles.h4,
     lineHeightPrimary && styles.lineHeightPrimary,
-    grey && styles.grey,
+    gray30 && styles.gray30,
     white && styles.white,
     green && styles.green,
     tapbar && styles.tapbar,

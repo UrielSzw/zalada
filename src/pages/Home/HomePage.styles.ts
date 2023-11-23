@@ -8,14 +8,14 @@ type Props = {
 export const getStyles = (props: Props) =>
   StyleSheet.create({
     container: {
-      backgroundColor: theme.colors.greyLight1,
+      backgroundColor: theme.colors.gray10,
     },
     welcomeBox: {
       paddingHorizontal: 24,
       backgroundColor: theme.colors.primary,
     },
     body: {
-      backgroundColor: theme.colors.greyLight1,
+      backgroundColor: theme.colors.gray10,
       paddingVertical: 20,
       marginTop: 10,
     },
@@ -27,7 +27,7 @@ export const getStyles = (props: Props) =>
       maxWidth: props?.width * 0.7,
     },
     lightLink: {
-      color: theme.colors.greyDark1,
+      color: theme.colors.gray40,
     },
     row: {
       flexDirection: 'row',

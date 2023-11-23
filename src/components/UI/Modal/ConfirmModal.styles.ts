@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 0,
     paddingHorizontal: 63,
-    borderBottomColor: theme.colors.grey,
+    borderBottomColor: theme.colors.gray30,
   },
   text: {
     textTransform: 'uppercase',

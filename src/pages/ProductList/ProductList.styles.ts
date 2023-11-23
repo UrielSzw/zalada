@@ -17,7 +17,7 @@ export const getStyles = (props?: any) =>
       paddingBottom: 0,
     },
     listWrapper: {
-      backgroundColor: theme.colors.greyLight2,
+      backgroundColor: theme.colors.gray20,
     },
     list: {
       flexDirection: 'row',

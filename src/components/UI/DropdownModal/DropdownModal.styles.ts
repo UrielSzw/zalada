@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 15,
     borderBottomWidth: 2,
-    borderColor: theme.colors.greyLight2,
+    borderColor: theme.colors.gray20,
   },
   options: {
     alignItems: 'center',
@@ -28,14 +28,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     borderBottomWidth: 2,
-    borderColor: theme.colors.greyLight2,
+    borderColor: theme.colors.gray20,
   },
   optionSelected: {
     paddingVertical: 15,
     alignItems: 'center',
     width: '100%',
     borderBottomWidth: 2,
-    borderColor: theme.colors.greyLight2,
-    backgroundColor: theme.colors.greyLight1,
+    borderColor: theme.colors.gray20,
+    backgroundColor: theme.colors.gray10,
   },
 });

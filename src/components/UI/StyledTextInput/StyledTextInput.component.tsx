@@ -20,7 +20,7 @@ export const StyledTextInput: React.FC<StyledTextInputProp> = ({
   return (
     <View style={styles.inputWrapper}>
       {leftIcon ? leftIcon : <></>}
-      <TextInput style={inputStyle} {...props} placeholderTextColor={theme.colors.grey} />
+      <TextInput style={inputStyle} {...props} placeholderTextColor={theme.colors.gray30} />
     </View>
   );
 };

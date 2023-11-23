@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     height: 30,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: theme.colors.grey,
+    borderColor: theme.colors.gray30,
     backgroundColor: theme.colors.white,
   },
   iconContainer: {

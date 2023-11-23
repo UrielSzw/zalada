@@ -54,7 +54,7 @@ export const Button: React.FC<Props> = ({
   ];
 
   const textStyles = {
-    grey: rounded,
+    gray30: rounded,
     primary: true,
     h4: big || bannerIcon,
     white: primary || red,

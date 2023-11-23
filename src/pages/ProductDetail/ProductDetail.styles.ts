@@ -38,7 +38,7 @@ export const getStyles = () => {
       marginLeft: 15,
     },
     anotherProductContainer: {
-      backgroundColor: theme.colors.greyLight1,
+      backgroundColor: theme.colors.gray10,
     },
     textBox: {
       flexDirection: 'row',

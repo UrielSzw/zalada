@@ -18,7 +18,7 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           <StyledText primary h4 style={{ marginBottom: 8 }}>
             Andrea Hirata
           </StyledText>
-          <StyledText grey>hirata@gmail.com</StyledText>
+          <StyledText gray30>hirata@gmail.com</StyledText>
         </View>
       </View>
       <StyledText primary h2 style={{ marginBottom: 31 }}>

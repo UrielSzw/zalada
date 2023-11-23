@@ -47,8 +47,8 @@ export const styles = StyleSheet.create({
   lineHeightPrimary: {
     lineHeight: theme.lineHeight.primary,
   },
-  grey: {
-    color: theme.colors.greyDark1,
+  gray30: {
+    color: theme.colors.gray40,
   },
   green: {
     color: theme.colors.primary,
