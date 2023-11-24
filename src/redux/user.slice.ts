@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserData } from '../types';
 
 export type UserState = {
   userData: {
@@ -8,39 +9,13 @@ export type UserState = {
   };
 };
 
-const initialState: UserState = {
-  userData: {
-    userName: '',
-    name: '',
-    email: '',
-  },
-};
-
-const initialStates = {
-  userData: {
-    email: 'jdoe@example.com',
-    firstname: 'Jane',
-    lastname: 'Doe',
-    addresses: [
-      {
-        defaultShipping: true,
-        defaultBilling: true,
-        firstname: 'Jane',
-        lastname: 'Doe',
-        region: {
-          regionCode: 'NY',
-          region: 'New York',
-          regionId: 43,
-        },
-        postcode: 10755,
-        street: ['123 Oak Ave'],
-        city: 'Purchase',
-        telephone: '512-555-1111',
-        countryId: 'US',
-      },
-    ],
-  },
-  password: 'Password1',
+const initialState: UserData = {
+  userId: '',
+  email: '',
+  firstname: '',
+  lastname: '',
+  addresses: [],
+  password: '',
 };
 
 export const userSlice = createSlice({
