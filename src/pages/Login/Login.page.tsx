@@ -14,13 +14,9 @@ export const loginValidationSchena = yup.object().shape({
     .string()
     .email()
     .min(5, 'Too short!')
-    .max(1000, 'Too long!')
+    .max(320, 'Too long!')
     .required('Email is required'),
-  password: yup
-    .string()
-    .min(5, 'Too short!')
-    .max(1000, 'Too long!')
-    .required('Password is required'),
+  password: yup.string().min(5, 'Too short!').max(30, 'Too long!').required('Password is required'),
 });
 
 const initialValues: FormData = {
