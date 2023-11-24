@@ -1,8 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
-import { styles } from './Button.style';
 import { StyledText } from '../StyledText/StyledText';
 import { ArrowIcon, BannerIcon, FilterIcon } from '../../../assets';
+import { theme } from '../../../theme';
+import { styles } from './Button.style';
 
 interface Props extends TouchableOpacityProps {
   text: string;
@@ -53,21 +54,18 @@ export const Button: React.FC<Props> = ({
     style,
   ];
 
-  const textStyles = {
-    gray30: rounded,
-    primary: true,
-    h4: big || bannerIcon,
-    white: primary || red,
-    lineHeightPrimary: true,
-    green: bannerIcon,
-    tapbar: tapbar,
-  };
+  const textStyles = [
+    rounded && { color: theme.colors.gray30 },
+    (big || bannerIcon) && { fontSize: theme.fontSize.md },
+    (primary || red) && { color: theme.colors.white },
+    bannerIcon && { color: theme.colors.green },
+  ];
 
   return (
     <TouchableOpacity disabled={disabled} activeOpacity={0.8} style={buttonStyles} {...props}>
       {filterIcon && <FilterIcon />}
       <View style={tapbar && styles.tapbar}>
-        <StyledText {...textStyles} children={text} />
+        <StyledText tapbar={tapbar} lineHeightPrimary style={textStyles} children={text} />
         {underline && <View style={styles.underline} />}
       </View>
       {arrowIcon && <ArrowIcon secondary={secondary} />}

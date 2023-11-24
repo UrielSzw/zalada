@@ -39,7 +39,7 @@ export const Rating: React.FC<Props> = ({ rating = 0, readOnly }) => {
             )
           )
         ) : (
-          <StyledText children="No rating" primary />
+          <StyledText children="No rating" />
         )}
       </View>
     );

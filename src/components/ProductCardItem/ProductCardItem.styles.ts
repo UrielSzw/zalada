@@ -26,10 +26,9 @@ export const getStyles = (props?: any) => {
       height: height > 800 ? 125 : 125 / (800 / height),
     },
     productTitle: {
-      height: theme.fontSize.h4 * 2,
-      lineHeight: theme.fontSize.h4,
+      height: theme.fontSize.md * 2,
+      lineHeight: theme.fontSize.md,
       marginBottom: 4,
-      fontSize: theme.fontSize.h4,
       letterSpacing: 0.2,
     },
     bottomContainer: {
@@ -42,17 +41,10 @@ export const getStyles = (props?: any) => {
     ratingNumber: {
       marginRight: 10,
       marginLeft: 3,
-      fontSize: 10,
-    },
-    qtyReviewsStyle: {
-      fontSize: 10,
     },
     iconWrapper: {
       flex: 1,
       alignItems: 'flex-end',
-    },
-    price: {
-      fontSize: 12,
     },
   });
 };

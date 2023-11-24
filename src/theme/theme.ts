@@ -1,6 +1,67 @@
 import { StyleSheet } from 'react-native';
 
-export const theme = {
+type FontWeight =
+  | 'normal'
+  | 'bold'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | undefined;
+
+type textDecoration = 'none' | 'underline' | 'line-through' | 'underline line-through' | undefined;
+
+interface Theme {
+  colors: {
+    primary: string;
+    default: string;
+    error: string;
+    gray40: string;
+    gray30: string;
+    gray20: string;
+    gray10: string;
+    white: string;
+    yellow: string;
+    green: string;
+  };
+  fontSize: {
+    xxl: number;
+    xl: number;
+    lg: number;
+    md: number;
+    default: number;
+    sm: number;
+    xs: number;
+  };
+  fontWeight: {
+    thin: FontWeight;
+    default: FontWeight;
+    bold: FontWeight;
+  };
+  fontFamily: {
+    primary: string;
+    secondary: string;
+  };
+  borderRadius: {
+    regular: number;
+    large: number;
+  };
+  lineHeight: {
+    default: number;
+    primary: number;
+  };
+  textDecoration: {
+    default: textDecoration;
+    underline: textDecoration;
+  };
+}
+
+export const theme: Theme = {
   colors: {
     primary: '#022D83',
     default: '#213547',
@@ -14,21 +75,22 @@ export const theme = {
     green: '#0ACF83',
   },
   fontSize: {
+    xxl: 28,
+    xl: 24,
+    lg: 22,
+    md: 16,
     default: 14,
-    h1: 28,
-    h2: 24,
-    h3: 22,
-    h4: 16,
+    sm: 12,
+    xs: 10,
   },
-  fontWeigth: {
+  fontWeight: {
+    thin: '100',
     default: '400',
-    title: '700',
+    bold: '700',
   },
   fontFamily: {
     primary: 'DMSans-Regular',
-    primaryBold: 'DMSans-Bold',
     secondary: 'Montserrat-Regular',
-    secondaryBold: 'Montserrat-Bold',
   },
   borderRadius: {
     regular: 10,
@@ -37,6 +99,10 @@ export const theme = {
   lineHeight: {
     default: 22,
     primary: 20,
+  },
+  textDecoration: {
+    default: 'none',
+    underline: 'underline',
   },
 };
 

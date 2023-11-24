@@ -26,7 +26,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 5,
-    fontFamily: theme.fontFamily.primary,
   },
   bottomContainer: {
     marginTop: 13,
@@ -53,8 +52,5 @@ export const styles = StyleSheet.create({
   iconContainer: {
     flex: 1,
     alignItems: 'flex-end',
-  },
-  priceNumber: {
-    fontFamily: theme.fontFamily.primaryBold,
   },
 });

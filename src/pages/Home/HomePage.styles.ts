@@ -26,9 +26,6 @@ export const getStyles = (props: Props) =>
       marginRight: 20,
       maxWidth: props?.width * 0.7,
     },
-    lightLink: {
-      color: theme.colors.gray40,
-    },
     row: {
       flexDirection: 'row',
       alignItems: 'center',

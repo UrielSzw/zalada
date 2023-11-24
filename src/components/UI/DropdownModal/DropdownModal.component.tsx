@@ -77,7 +77,7 @@ export const DropdownModal: React.FC<Props> = ({
       <TouchableOpacity style={styles.background} onPress={() => handleOnPress()}>
         <Animated.View style={[styles.container, slideAnimationStyle]}>
           <TouchableWithoutFeedback>
-            <StyledText h4 children={title} style={styles.title} />
+            <StyledText variant="h4" children={title} style={styles.title} />
           </TouchableWithoutFeedback>
           <ScrollView contentContainerStyle={styles.options}>
             {showOptions?.map((option, index) => (

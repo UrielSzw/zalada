@@ -69,9 +69,7 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
 
         <View style={styles.anotherProductContainer}>
           <View style={styles.textBox}>
-            <StyledText primary h4>
-              Recommended Products
-            </StyledText>
+            <StyledText variant="h4">Recommended Products</StyledText>
             <TouchableOpacity onPress={() => navigation.navigate(PATHS.PLP)}>
               <StyledText>See All</StyledText>
             </TouchableOpacity>
@@ -96,12 +94,10 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
       <View>
         {currentProduct ? (
           <>
-            <StyledText primary h4 style={{ marginBottom: 13 }}>
+            <StyledText variant="h4" style={{ marginBottom: 13 }}>
               {currentProduct.name}
             </StyledText>
-            <StyledText primary style={{ textAlign: 'justify' }}>
-              {currentProduct.description}
-            </StyledText>
+            <StyledText style={{ textAlign: 'justify' }}>{currentProduct.description}</StyledText>
           </>
         ) : (
           <></>
@@ -114,12 +110,10 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
     <View style={styles.container}>
       <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
         <View style={styles.titleTextContainer}>
-          <StyledText green h1>
+          <StyledText color="green" variant="h1">
             {`USD ${currentProduct?.price}`}
           </StyledText>
-          <StyledText primary h1>
-            {`${currentProduct?.name}`}
-          </StyledText>
+          <StyledText variant="h1">{`${currentProduct?.name}`}</StyledText>
         </View>
 
         <View style={styles.navbar}>
