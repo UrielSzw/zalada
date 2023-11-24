@@ -6,12 +6,8 @@ import { LoginForm } from '../../components';
 import { PATHS } from '../../routes/paths';
 import { commonLogin } from '../../utils/commonLogin';
 import ConfirmModal from '../../components/UI/Modal/ConfirmModal.component';
+import { FormData } from '../../utils/commonLogin';
 import { getStyles } from './Login.styles';
-
-type FormData = {
-  username: string;
-  password: string;
-};
 
 export const loginValidationSchena = yup.object().shape({
   username: yup

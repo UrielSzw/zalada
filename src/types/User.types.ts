@@ -1,4 +1,4 @@
-interface Address {
+export interface Address {
   defaultShipping: boolean;
   defaultBilling: boolean;
   firstname: string;
@@ -15,7 +15,7 @@ interface Address {
   countryId: string;
 }
 
-interface UserData {
+export interface UserData {
   userId: string;
   email: string;
   firstname: string;
