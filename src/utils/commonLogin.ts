@@ -5,22 +5,20 @@ import { setUserData } from '../redux/user.slice';
 import { setLoading } from './setLoading';
 import { setAppError } from './setAppError';
 
-type FormData = {
-  userName: string;
+export type FormData = {
+  username: string;
   password: string;
-  email: string;
 };
 
 export const commonLogin = async (formData: FormData, callback: any) => {
   try {
     setLoading(true);
+
     const body = {
-      userName: formData.userName,
+      username: formData.username,
       password: formData.password,
-      email: formData.email,
     };
     const resp = await login({ body });
-    console.log(body);
     if (!resp) return;
     const { statusCode, message } = resp.data;
     if (statusCode === 200) {
