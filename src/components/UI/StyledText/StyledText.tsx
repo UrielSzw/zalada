@@ -1,24 +1,15 @@
 import React from 'react';
-import { Text, TextProps } from 'react-native';
-import { styles } from './StyledText.styles';
+import { StyleProp, Text, TextProps, TextStyle } from 'react-native';
 import { theme } from '../../../theme';
+import * as StyleTypes from '../../../types/Text.types';
+import { styles } from './StyledText.styles';
 
 interface Props extends TextProps {
-  size?: 'xs' | 'sm' | 'default' | 'md' | 'lg' | 'xl' | 'xxl';
+  size?: StyleTypes.Sizes;
   variant?: 'h1' | 'h2' | 'h3' | 'h4';
-  color?:
-    | 'primary'
-    | 'default'
-    | 'gray40'
-    | 'gray30'
-    | 'gray20'
-    | 'gray10'
-    | 'white'
-    | 'error'
-    | 'green'
-    | 'yellow';
-  weight?: 'default' | 'bold' | 'thin';
-  fontFamily?: 'primary' | 'secondary';
+  color?: StyleTypes.Colors;
+  weight?: StyleTypes.FontWeight;
+  fontFamily?: StyleTypes.FontFamily;
   underline?: boolean;
   lineHeightPrimary?: boolean;
   tapbar?: boolean;
@@ -38,12 +29,12 @@ export const StyledText: React.FC<Props> = ({
   style = {},
   ...props
 }) => {
-  const textStyles = [
+  const textStyles: StyleProp<TextStyle> = [
     { color: theme.colors[color] },
     { fontSize: theme.fontSize[size] },
     { fontWeight: theme.fontWeight[weight] },
     { fontFamily: theme.fontFamily[fontFamily] },
-    underline && { textDecorationLine: theme.textDecoration.underline },
+    { textDecorationLine: underline ? 'underline' : 'none' },
     variant && styles[variant],
     lineHeightPrimary && styles.lineHeightPrimary,
     tapbar && styles.tapbar,

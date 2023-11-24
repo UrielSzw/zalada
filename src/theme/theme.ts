@@ -1,20 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-type FontWeight =
-  | 'normal'
-  | 'bold'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | undefined;
-
-type textDecoration = 'none' | 'underline' | 'line-through' | 'underline line-through' | undefined;
+type FontWeight = '100' | '400' | '700';
 
 interface Theme {
   colors: {
@@ -54,10 +40,6 @@ interface Theme {
   lineHeight: {
     default: number;
     primary: number;
-  };
-  textDecoration: {
-    default: textDecoration;
-    underline: textDecoration;
   };
 }
 
@@ -99,10 +81,6 @@ export const theme: Theme = {
   lineHeight: {
     default: 22,
     primary: 20,
-  },
-  textDecoration: {
-    default: 'none',
-    underline: 'underline',
   },
 };
 
