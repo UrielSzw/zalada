@@ -63,14 +63,14 @@ export const DemoComponents: React.FC<Props> = ({ navigation }) => {
           />
         ))}
       </ScrollView>
-      <StyledText children="Rating display only" h3 />
+      <StyledText children="Rating display only" variant="h3" />
       <Rating rating={5} readOnly />
       <Rating rating={4} readOnly />
       <Rating rating={0} readOnly />
-      <StyledText children="Rating input" h3 />
+      <StyledText children="Rating input" variant="h3" />
       <Rating />
       <Rating rating={3} />
-      <StyledText children="Buttons" h3 />
+      <StyledText children="Buttons" variant="h3" />
       <Button text="Apply Filter" primary big />
       <Button text="Popularity" primary />
       <Button text="Newest" secondary />

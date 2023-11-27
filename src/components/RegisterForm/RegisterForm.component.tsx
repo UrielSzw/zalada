@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Pressable } from 'react-native';
-import { Button, FormikTextInput, StyledText } from '../';
-import { theme } from '../../theme';
+import { FormikTextInput, StyledText } from '../';
 import { PATHS } from '../../routes/paths';
 import { getStyles } from '../LoginForm/LoginForm.styles';
 
@@ -23,7 +22,7 @@ export const RegisterForm: React.FC<Props> = ({
   return (
     <>
       <View style={styles.titleWrapper}>
-        <StyledText white style={{ fontSize: 51 }}>
+        <StyledText color="white" style={{ fontSize: 51 }}>
           Register
         </StyledText>
       </View>
@@ -32,12 +31,9 @@ export const RegisterForm: React.FC<Props> = ({
         <FormikTextInput name="email" placeholder="E-mail" inputMode="email" />
         <FormikTextInput name="password" placeholder="Password" secureTextEntry />
         <View style={styles.signupLink}>
-          <StyledText white>Already registered? </StyledText>
+          <StyledText color="white">Already registered? </StyledText>
           <TouchableOpacity>
-            <StyledText
-              style={{ color: theme.colors.green }}
-              onPress={() => navigation.navigate(PATHS.LOGIN)}
-            >
+            <StyledText color="green" onPress={() => navigation.navigate(PATHS.LOGIN)}>
               Sign in here
             </StyledText>
           </TouchableOpacity>
@@ -50,7 +46,7 @@ export const RegisterForm: React.FC<Props> = ({
             handleSubmit();
           }}
         >
-          <StyledText white bold>
+          <StyledText color="white" weight="bold">
             Log In
           </StyledText>
         </Pressable>

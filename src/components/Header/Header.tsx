@@ -34,7 +34,7 @@ const Header: React.FC<any> = ({ navigation, route, options }) => {
       <CartIcon />
       {totalItems > 0 ? (
         <View style={styles.badge}>
-          <StyledText white style={{ fontFamily: theme.fontFamily.primaryBold }}>
+          <StyledText color="white" weight="bold">
             {totalItems}
           </StyledText>
         </View>
@@ -69,7 +69,7 @@ const Header: React.FC<any> = ({ navigation, route, options }) => {
       case PATHS.CART:
         return {
           center: (
-            <StyledText white h4>
+            <StyledText color="white" variant="h4">
               Shopping Cart
             </StyledText>
           ),
@@ -78,7 +78,7 @@ const Header: React.FC<any> = ({ navigation, route, options }) => {
       case PATHS.CHECKOUT:
         return {
           center: (
-            <StyledText white h4>
+            <StyledText color="white" variant="h4">
               Checkout Page
             </StyledText>
           ),
@@ -94,7 +94,7 @@ const Header: React.FC<any> = ({ navigation, route, options }) => {
       case PATHS.PROFILE:
         return {
           center: (
-            <StyledText white h4>
+            <StyledText color="white" variant="h4">
               Profile
             </StyledText>
           ),

@@ -14,12 +14,17 @@ type Props = {
 };
 
 export const Banner: React.FC<Props> = ({ product, small, navigation, style }) => {
-  const styles = getStyles({ small });
+  const styles = getStyles();
   return (
     <View style={{ ...styles.cardContainer, ...style }}>
       <View style={styles.productWrapper}>
         <View style={styles.detailsWrapper}>
-          <StyledText numberOfLines={4} ellipsizeMode="tail" h3 style={styles.verticalText}>
+          <StyledText
+            style={{ lineHeight: small ? 22 : 28 }}
+            size={small ? 'md' : 'lg'}
+            numberOfLines={4}
+            ellipsizeMode="tail"
+          >
             {product.name}
           </StyledText>
           <Button
