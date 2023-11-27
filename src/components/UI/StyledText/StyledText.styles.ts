@@ -26,9 +26,6 @@ export const styles = StyleSheet.create({
     fontWeight: theme.fontWeight.bold,
     letterSpacing: 0.2,
   },
-  lineHeightPrimary: {
-    lineHeight: theme.lineHeight.primary,
-  },
   tapbar: {
     fontSize: theme.fontSize.md,
     marginBottom: 10,

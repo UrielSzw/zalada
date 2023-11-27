@@ -110,7 +110,7 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
     <View style={styles.container}>
       <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
         <View style={styles.titleTextContainer}>
-          <StyledText color="green" variant="h1">
+          <StyledText color="primary" size="md">
             {`USD ${currentProduct?.price}`}
           </StyledText>
           <StyledText variant="h1">{`${currentProduct?.name}`}</StyledText>

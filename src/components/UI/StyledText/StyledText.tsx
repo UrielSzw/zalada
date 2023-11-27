@@ -11,7 +11,6 @@ interface Props extends TextProps {
   weight?: StyleTypes.FontWeight;
   fontFamily?: StyleTypes.FontFamily;
   underline?: boolean;
-  lineHeightPrimary?: boolean;
   tapbar?: boolean;
   children: string | number;
 }
@@ -23,7 +22,6 @@ export const StyledText: React.FC<Props> = ({
   weight = 'default',
   fontFamily = 'primary',
   underline,
-  lineHeightPrimary,
   tapbar,
   children,
   style = {},
@@ -36,7 +34,6 @@ export const StyledText: React.FC<Props> = ({
     { fontFamily: theme.fontFamily[fontFamily] },
     { textDecorationLine: underline ? 'underline' : 'none' },
     variant && styles[variant],
-    lineHeightPrimary && styles.lineHeightPrimary,
     tapbar && styles.tapbar,
     style,
   ];

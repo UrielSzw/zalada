@@ -21,7 +21,7 @@ export const Banner: React.FC<Props> = ({ product, small, navigation, style }) =
         <View style={styles.detailsWrapper}>
           <StyledText
             style={{ lineHeight: small ? 22 : 28 }}
-            variant={small ? 'h3' : 'h2'}
+            size={small ? 'md' : 'lg'}
             numberOfLines={4}
             ellipsizeMode="tail"
           >

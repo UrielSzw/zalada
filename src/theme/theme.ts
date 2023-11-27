@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-type FontWeight = '100' | '400' | '700';
+type FontWeight = '100' | '400' | '600';
 
 interface Theme {
   colors: {
@@ -37,10 +37,6 @@ interface Theme {
     regular: number;
     large: number;
   };
-  lineHeight: {
-    default: number;
-    primary: number;
-  };
 }
 
 export const theme: Theme = {
@@ -68,7 +64,7 @@ export const theme: Theme = {
   fontWeight: {
     thin: '100',
     default: '400',
-    bold: '700',
+    bold: '600',
   },
   fontFamily: {
     primary: 'DMSans-Regular',
@@ -77,10 +73,6 @@ export const theme: Theme = {
   borderRadius: {
     regular: 10,
     large: 30,
-  },
-  lineHeight: {
-    default: 22,
-    primary: 20,
   },
 };
 

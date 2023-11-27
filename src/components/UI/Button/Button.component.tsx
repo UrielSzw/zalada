@@ -58,7 +58,7 @@ export const Button: React.FC<Props> = ({
     rounded && { color: theme.colors.gray30 },
     (big || bannerIcon) && { fontSize: theme.fontSize.md },
     (primary || red) && { color: theme.colors.white },
-    bannerIcon && { color: theme.colors.green },
+    bannerIcon && { color: theme.colors.primary },
   ];
 
   return (
