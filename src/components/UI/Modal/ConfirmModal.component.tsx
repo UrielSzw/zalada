@@ -40,7 +40,7 @@ const ConfirmModal: React.FC<Props> = ({
           <View style={styles.modalView}>
             <View style={{ ...styles.modalIcon, backgroundColor }}>{icon}</View>
             <View style={styles.title}>
-              <StyledText h3 style={styles.text}>
+              <StyledText variant="h3" style={styles.text}>
                 {title}
               </StyledText>
             </View>

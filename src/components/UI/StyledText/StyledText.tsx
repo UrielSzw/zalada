@@ -1,50 +1,39 @@
 import React from 'react';
-import { Text, View, TextProps } from 'react-native';
+import { StyleProp, Text, TextProps, TextStyle } from 'react-native';
+import { theme } from '../../../theme';
+import * as StyleTypes from '../../../types/Text.types';
 import { styles } from './StyledText.styles';
 
 interface Props extends TextProps {
-  primary?: boolean;
-  h1?: boolean;
-  h2?: boolean;
-  h3?: boolean;
-  h4?: boolean;
-  white?: boolean;
-  lineHeightPrimary?: boolean;
-  gray30?: boolean;
-  green?: boolean;
+  size?: StyleTypes.Sizes;
+  variant?: 'h1' | 'h2' | 'h3' | 'h4';
+  color?: StyleTypes.Colors;
+  weight?: StyleTypes.FontWeight;
+  fontFamily?: StyleTypes.FontFamily;
+  underline?: boolean;
   tapbar?: boolean;
   children: string | number;
-  bold?: boolean;
 }
 
 export const StyledText: React.FC<Props> = ({
-  primary,
-  h1,
-  h2,
-  h3,
-  h4,
-  white,
-  lineHeightPrimary,
-  gray30,
-  green,
+  size = 'default',
+  variant,
+  color = 'default',
+  weight = 'default',
+  fontFamily = 'primary',
+  underline,
   tapbar,
   children,
-  bold,
   style = {},
   ...props
 }) => {
-  const textStyles = [
-    styles.default,
-    primary && styles.primary,
-    bold && styles.bold,
-    h1 && styles.h1,
-    h2 && styles.h2,
-    h3 && styles.h3,
-    h4 && styles.h4,
-    lineHeightPrimary && styles.lineHeightPrimary,
-    gray30 && styles.gray30,
-    white && styles.white,
-    green && styles.green,
+  const textStyles: StyleProp<TextStyle> = [
+    { color: theme.colors[color] },
+    { fontSize: theme.fontSize[size] },
+    { fontWeight: theme.fontWeight[weight] },
+    { fontFamily: theme.fontFamily[fontFamily] },
+    { textDecorationLine: underline ? 'underline' : 'none' },
+    variant && styles[variant],
     tapbar && styles.tapbar,
     style,
   ];

@@ -15,22 +15,18 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
       <View style={styles.userContainer}>
         <Avatar img={avatarImage} big />
         <View style={{ marginLeft: 26 }}>
-          <StyledText primary h4 style={{ marginBottom: 8 }}>
+          <StyledText variant="h4" style={{ marginBottom: 8 }}>
             Andrea Hirata
           </StyledText>
-          <StyledText gray30>hirata@gmail.com</StyledText>
+          <StyledText color="gray30">hirata@gmail.com</StyledText>
         </View>
       </View>
-      <StyledText primary h2 style={{ marginBottom: 31 }}>
+      <StyledText variant="h2" style={{ marginBottom: 31 }}>
         User information
       </StyledText>
-      <StyledText primary style={{ marginBottom: 22 }}>
-        Username: Andrea Hirata
-      </StyledText>
-      <StyledText primary style={{ marginBottom: 22 }}>
-        Email: hirata@gmail.com
-      </StyledText>
-      <StyledText primary>Password: ************</StyledText>
+      <StyledText style={{ marginBottom: 22 }}>Username: Andrea Hirata</StyledText>
+      <StyledText style={{ marginBottom: 22 }}>Email: hirata@gmail.com</StyledText>
+      <StyledText>Password: ************</StyledText>
       <View style={styles.btnContainer}>
         <Button
           text="Logout"

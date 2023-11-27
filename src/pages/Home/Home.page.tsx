@@ -27,11 +27,11 @@ export const Home = ({ navigation }: any) => {
     <>
       <View style={styles.welcomeBox}>
         <StyledText
-          white
-          h4
+          color="white"
+          variant="h4"
           style={{ marginTop: 20, marginBottom: 4 }}
         >{`Hi, ${userName}`}</StyledText>
-        <StyledText white h2 style={{ marginBottom: 25 }}>
+        <StyledText color="white" variant="h2" style={{ marginBottom: 25 }}>
           What are you looking for today?
         </StyledText>
         <Formik initialValues={{ search: '' }} onSubmit={handleSearch}>
@@ -71,12 +71,9 @@ export const Home = ({ navigation }: any) => {
                   ))}
               </ScrollView>
               <View style={styles.row}>
-                <StyledText h4>Featured Products</StyledText>
+                <StyledText variant="h4">Featured Products</StyledText>
                 <TouchableOpacity>
-                  <StyledText
-                    style={styles.lightLink}
-                    onPress={() => navigation.navigate(PATHS.PLP)}
-                  >
+                  <StyledText color="gray40" onPress={() => navigation.navigate(PATHS.PLP)}>
                     See All
                   </StyledText>
                 </TouchableOpacity>

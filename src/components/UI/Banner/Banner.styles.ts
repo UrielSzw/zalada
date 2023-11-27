@@ -22,8 +22,4 @@ export const getStyles = (props?: any) =>
       display: 'flex',
       justifyContent: 'space-between',
     },
-    verticalText: {
-      fontSize: props?.small ? 18 : 22,
-      lineHeight: props?.small ? 22 : 28,
-    },
   });

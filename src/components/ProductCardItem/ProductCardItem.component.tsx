@@ -31,12 +31,14 @@ const ProductCardItem: React.FC<Props> = ({ product, navigation, customStyles })
         {product.name}
       </StyledText>
 
-      <StyledText h4 style={styles.price}>{`USD ${product.price}`}</StyledText>
+      <StyledText size="xs">{`USD ${product.price}`}</StyledText>
 
       <View style={styles.bottomContainer}>
         <StarFilledIcon readOnly />
-        <StyledText style={styles.ratingNumber}>4.2</StyledText>
-        <StyledText style={styles.qtyReviewsStyle}>342 Reviews</StyledText>
+        <StyledText size="xs" style={{ marginLeft: 4, marginRight: 8 }}>
+          4.2
+        </StyledText>
+        <StyledText size="xs">342 Reviews</StyledText>
 
         <View style={styles.iconWrapper}>
           <TouchableOpacity

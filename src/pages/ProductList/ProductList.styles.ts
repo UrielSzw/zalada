@@ -13,7 +13,6 @@ export const getStyles = (props?: any) =>
       paddingBottom: 0,
     },
     sectionTitle: {
-      fontSize: theme.fontSize.h4,
       paddingBottom: 0,
     },
     listWrapper: {

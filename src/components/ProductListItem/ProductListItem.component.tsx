@@ -3,8 +3,8 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { StyledText } from '../UI/StyledText/StyledText';
 import { MoreVertical, StarFilledIcon } from '../../assets';
 import { Product } from '../../types/Product.types';
-import { styles } from '../../common/styles/Product.styles';
 import { PATHS } from '../../routes/paths';
+import { styles } from '../../common/styles/Product.styles';
 
 type Props = {
   product: Product;
@@ -24,10 +24,10 @@ const ProductListItem: React.FC<Props> = ({ product, navigation }) => {
         <Image style={styles.image} source={{ uri: product?.overview[0] }} />
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
-        <StyledText h4 numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+        <StyledText variant="h4" numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
           {product?.name}
         </StyledText>
-        <StyledText style={styles.priceNumber}>{`USD ${product?.price}`}</StyledText>
+        <StyledText weight="bold">{`USD ${product?.price}`}</StyledText>
 
         <View style={styles.bottomContainer}>
           <StarFilledIcon readOnly />

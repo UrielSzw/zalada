@@ -42,7 +42,7 @@ export const Cart = ({ route, navigation }: any) => {
       </ScrollView>
       {!isCart && underlineButton !== undefined ? (
         <ScrollView style={styles.payment}>
-          <StyledText h4 children="Payment method" style={{ marginBottom: 18 }} />
+          <StyledText variant="h4" children="Payment method" style={{ marginBottom: 18 }} />
           <View style={styles.paymentData}>
             {['Cash', 'Agree with the seller'].map((text, index) => (
               <Button
@@ -59,8 +59,8 @@ export const Cart = ({ route, navigation }: any) => {
         <></>
       )}
       <View style={styles.info}>
-        <StyledText gray30 style={{ fontWeight: 'bold' }} children={`Total ${totalItems} items`} />
-        <StyledText h4 children={`USD ${totalPrice}`} />
+        <StyledText color="gray30" weight="bold" children={`Total ${totalItems} items`} />
+        <StyledText variant="h4" children={`USD ${totalPrice}`} />
       </View>
 
       <View style={styles.button}>

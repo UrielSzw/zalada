@@ -6,19 +6,21 @@ import { LoginForm } from '../../components';
 import { PATHS } from '../../routes/paths';
 import { commonLogin } from '../../utils/commonLogin';
 import ConfirmModal from '../../components/UI/Modal/ConfirmModal.component';
+import { FormData } from '../../utils/commonLogin';
 import { getStyles } from './Login.styles';
 
 export const loginValidationSchena = yup.object().shape({
-  userName: yup.string().min(5, 'Too short!').max(1000, 'Too long!').required('Name is required'),
-  password: yup
+  username: yup
     .string()
+    .email()
     .min(5, 'Too short!')
-    .max(1000, 'Too long!')
-    .required('Password is required'),
+    .max(320, 'Too long!')
+    .required('Email is required'),
+  password: yup.string().min(5, 'Too short!').max(30, 'Too long!').required('Password is required'),
 });
 
-const initialValues = {
-  userName: '',
+const initialValues: FormData = {
+  username: '',
   password: '',
 };
 
@@ -28,7 +30,7 @@ export const Login = ({ navigation, route }: any) => {
   const { height } = Dimensions.get('window');
   const styles = getStyles({ height });
 
-  const handleLogin = (values: any) => {
+  const handleLogin = (values: FormData) => {
     commonLogin(values, () => navigation.navigate(PATHS.HOME));
   };
 

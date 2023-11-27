@@ -44,10 +44,10 @@ const ProductCartItem: React.FC<Props> = ({ cartItem, readOnly }) => {
         <Image style={styles.image} source={{ uri: cartItem?.img }} />
       </View>
       <View style={{ flex: 1 }}>
-        <StyledText h4 numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+        <StyledText variant="h4" numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
           {cartItem?.name}
         </StyledText>
-        <StyledText style={styles.priceNumber}>{`USD ${cartItem?.price}`}</StyledText>
+        <StyledText weight="bold">{`USD ${cartItem?.price}`}</StyledText>
 
         <View style={styles.bottomContainer}>
           {!readOnly ? (
@@ -55,7 +55,7 @@ const ProductCartItem: React.FC<Props> = ({ cartItem, readOnly }) => {
               <TouchableOpacity style={styles.amountButton} onPress={handleDecrement}>
                 <MinusIcon />
               </TouchableOpacity>
-              <StyledText h4 style={styles.amountNumber}>
+              <StyledText variant="h4" style={styles.amountNumber}>
                 {cartItem.quantity}
               </StyledText>
               <TouchableOpacity
@@ -70,7 +70,7 @@ const ProductCartItem: React.FC<Props> = ({ cartItem, readOnly }) => {
               </TouchableOpacity>
             </>
           ) : (
-            <StyledText h4>{cartItem.quantity}</StyledText>
+            <StyledText variant="h4">{cartItem.quantity}</StyledText>
           )}
           <View style={styles.iconContainer}>
             <TouchableOpacity onPress={() => dispatch(removeItemFromCart(cartItem))}>

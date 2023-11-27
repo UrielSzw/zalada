@@ -25,15 +25,20 @@ export const LoginForm: React.FC<Props> = ({
     <>
       <View style={styles.titleWrapper}>
         <DipCoreLogo style={styles.dipCore} />
-        <StyledText numberOfLines={1} adjustsFontSizeToFit white style={{ textAlign: 'center' }}>
+        <StyledText
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          color="white"
+          style={{ textAlign: 'center' }}
+        >
           Your e-commerce platform
         </StyledText>
       </View>
       <View style={styles.buttonsWrapper}>
-        <FormikTextInput name="userName" placeholder="userName" />
+        <FormikTextInput name="username" placeholder="Email" />
         <FormikTextInput name="password" placeholder="Password" secureTextEntry />
         <View style={styles.signupLink}>
-          <StyledText style={{ marginRight: 5 }} white>
+          <StyledText style={{ marginRight: 5 }} color="white">
             Don't have an account?
           </StyledText>
           <TouchableOpacity>
@@ -53,7 +58,7 @@ export const LoginForm: React.FC<Props> = ({
           }}
           style={styles.logInBtn}
         >
-          <StyledText white bold>
+          <StyledText color="white" weight="bold">
             Log In
           </StyledText>
         </Pressable>

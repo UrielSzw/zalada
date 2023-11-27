@@ -39,8 +39,13 @@ export const ProductList = ({ navigation, route }: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
-        <StyledText white style={styles.sectionTitle} children="Products" />
-        <StyledText white h2 children="Featured Products" style={{ marginBottom: 25 }} />
+        <StyledText color="white" variant="h4" style={styles.sectionTitle} children="Products" />
+        <StyledText
+          color="white"
+          variant="h2"
+          children="Featured Products"
+          style={{ marginBottom: 25 }}
+        />
         <Formik
           initialValues={{ search: search }}
           onSubmit={(values: any) => handleNewSearch(values)}
@@ -70,7 +75,7 @@ export const ProductList = ({ navigation, route }: any) => {
                   <ProductCardItem key={index} product={product} navigation={navigation} />
                 ))
               ) : (
-                <StyledText h4 style={{ paddingLeft: 10 }}>
+                <StyledText variant="h4" style={{ paddingLeft: 10 }}>
                   No products available
                 </StyledText>
               )}
