@@ -1,19 +1,26 @@
 import React from 'react';
 import { StyledText, StyledTextInput } from '..';
 import { useField } from 'formik';
-import { TextInputProps } from 'react-native';
+import { TextInputProps, View } from 'react-native';
 import { theme } from '../../theme';
 
 interface FormikInputProps extends TextInputProps {
   name: string;
   leftIcon?: React.ReactElement;
+  marginBottomError?: number;
 }
 
-export const FormikTextInput: React.FC<FormikInputProps> = ({ name, leftIcon, ...props }) => {
+export const FormikTextInput: React.FC<FormikInputProps> = ({
+  name,
+  leftIcon,
+  marginBottomError = 15,
+  ...props
+}) => {
   const [field, meta, helpers] = useField(name);
 
+
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <StyledTextInput
         error={meta.error}
         value={field.value}
@@ -22,9 +29,9 @@ export const FormikTextInput: React.FC<FormikInputProps> = ({ name, leftIcon, ..
         {...props}
       />
 
-      <StyledText style={{ color: theme.colors.error, marginBottom: 15 }}>
+      <StyledText style={{ color: theme.colors.error, marginBottom: marginBottomError }}>
         {meta.error ? meta.error : ''}
       </StyledText>
-    </>
+    </View>
   );
 };
