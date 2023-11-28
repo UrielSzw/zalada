@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
 export const SuccessIcon: React.FC = (props: any) => (
   <Svg width={props.width || '70'} height={props.height || '70'} viewBox="0 0 59 59" fill="none">

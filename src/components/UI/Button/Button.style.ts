@@ -3,6 +3,8 @@ import { theme } from '../../../theme';
 
 export const styles = StyleSheet.create({
   default: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   primary: {
@@ -20,16 +22,37 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.gray40,
     borderWidth: 1,
   },
+  transparent: {
+    paddingHorizontal: 15,
+    paddingVertical: 9.5,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 1,
+  },
+  tapbar: {
+    paddingHorizontal: 15,
+    paddingVertical: 4,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 1,
+  },
   big: {
     alignItems: 'center',
     paddingVertical: 15,
     width: '100%',
   },
   rounded: {
+    paddingHorizontal: 15,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 1,
     paddingVertical: 2.5,
     borderRadius: theme.borderRadius.large,
     flexDirection: 'row',
     gap: 10,
+  },
+  roundedSelected: {
+    backgroundColor: theme.colors.primary,
   },
   icon: {
     paddingVertical: 12.5,
@@ -39,23 +62,25 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  tapbar: {
-    width: '100%',
+  tapbarWrapper: {
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  underline: {
+  tapbarText: {
+    fontSize: theme.fontSize.md,
+    marginBottom: 10,
+  },
+  selected: {
     borderBottomColor: theme.colors.primary,
     borderBottomWidth: 3,
-    width: '100%',
+    width: 24,
+    display: 'none',
   },
-  redBackground: {
-    backgroundColor: theme.colors.error,
+  visible: {
+    display: 'flex',
   },
   greyBackground: {
     backgroundColor: theme.colors.gray30,
-  },
-  greenBackground: {
-    backgroundColor: theme.colors.green,
   },
 });

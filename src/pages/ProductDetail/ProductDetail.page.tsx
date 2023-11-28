@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Button, DropdownModal, StyledText } from '../../components';
-import { getStyles } from './ProductDetail.styles';
 import { useDispatch } from 'react-redux';
 import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import { CartItem, addItemToCart } from '../../redux/cart.slice';
 import { useProduct } from '../../hooks/useProduct';
+import { ArrowIcon } from '../../assets';
+import { getStyles } from './ProductDetail.styles';
 
 type Props = {
   route: any;
@@ -117,12 +118,22 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
         </View>
 
         <View style={styles.navbar}>
-          <Button text="Overview" tapbar underline={section === 1} onPress={() => setSection(1)} />
-          <Button text="Features" tapbar underline={section === 2} onPress={() => setSection(2)} />
+          <Button
+            text="Overview"
+            variant="tapbar"
+            selected={section === 1}
+            onPress={() => setSection(1)}
+          />
+          <Button
+            text="Features"
+            variant="tapbar"
+            selected={section === 2}
+            onPress={() => setSection(2)}
+          />
           <Button
             text="Specification"
-            tapbar
-            underline={section === 3}
+            variant="tapbar"
+            selected={section === 3}
             onPress={() => setSection(3)}
           />
         </View>
@@ -132,8 +143,8 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
       <Button
         onPress={() => setVisible(true)}
         text={`Quantity: ${dropdownValue} (${currentProduct.stock} available)`}
-        arrowIcon
-        secondary
+        iconRight={<ArrowIcon />}
+        variant="secondary"
         style={{ marginTop: 20 }}
       />
 
@@ -145,7 +156,7 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
         dropdownValue={dropdownValue}
         setDropdownValue={setDropdownValue}
       />
-      <Button onPress={addToCart} text="Add To Cart" primary big style={styles.btn} />
+      <Button onPress={addToCart} text="Add To Cart" big style={styles.btn} />
     </View>
   ) : (
     <></>

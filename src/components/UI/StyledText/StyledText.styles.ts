@@ -26,8 +26,4 @@ export const styles = StyleSheet.create({
     fontWeight: theme.fontWeight.bold,
     letterSpacing: 0.2,
   },
-  tapbar: {
-    fontSize: theme.fontSize.md,
-    marginBottom: 10,
-  },
 });
