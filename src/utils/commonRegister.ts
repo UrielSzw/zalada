@@ -6,18 +6,45 @@ import { setUserData } from '../redux/user.slice';
 import { setAppError } from './setAppError';
 
 type FormData = {
-  userName: string;
+  firstName: string;
+  lastName: string;
   password: string;
   email: string;
+  postCode: string;
+  region: string;
+  street: string;
+  telephone: string;
 };
 
 export const commonRegister = async (formData: FormData, callback: any) => {
   try {
     setLoading(true);
     const body = {
-      userName: formData.userName,
+      customer: {
+        email: formData.email,
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        addresses: [
+          {
+            defaultShipping: true,
+            defaultBilling: true,
+            firstname: formData.firstName,
+            lastname: formData.lastName,
+            region: {
+              regionCode: 'NY',
+              region: formData.region,
+              regionId: 43,
+            },
+            postcode: formData.postCode,
+            street: [formData.street],
+            city: 'Purchase',
+            telephone: formData.telephone,
+            countryId: 'US',
+          },
+        ],
+      },
+
       password: formData.password,
-      email: formData.email,
     };
     const resp = await register({ body });
     if (!resp) return;
