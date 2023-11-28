@@ -12,22 +12,22 @@ export const registerValidationSchema = yup.object().shape({
   firstName: yup
     .string()
     .min(5, 'Too short!')
-    .max(1000, 'Too long!')
+    .max(360, 'Too long!')
     .required('First Name is required'),
   lastName: yup
     .string()
     .min(5, 'Too short!')
-    .max(1000, 'Too long!')
+    .max(360, 'Too long!')
     .required('Last Name is required'),
   email: yup.string().email().required('E-mail is required!'),
   password: yup
     .string()
     .min(3, 'Too short!')
-    .max(1000, 'Too long!')
+    .max(360, 'Too long!')
     .required('Password is required'),
-  region: yup.string().min(5, 'Too short!').max(1000, 'Too long!').required('City is required'),
-  postCode: yup.string().max(1000, 'Too long!').required('Postal Code is required'),
-  street: yup.string().max(1000, 'Too long!').required('Postal Code is required'),
+  region: yup.string().min(5, 'Too short!').max(360, 'Too long!').required('City is required'),
+  postCode: yup.string().max(360, 'Too long!').required('Postal Code is required'),
+  street: yup.string().max(360, 'Too long!').required('Postal Code is required'),
   telephone: yup
     .number()
     .min(10, 'Telephone needs at least 10 characters')
