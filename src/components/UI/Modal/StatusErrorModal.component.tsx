@@ -1,22 +1,20 @@
 import React from 'react';
 import ConfirmModal from './ConfirmModal.component';
-import { RootState } from '../../../redux';
-import { useDispatch, useSelector } from 'react-redux';
-import { hideErrorModal } from '../../../redux/commonComponents';
+import {
+  useAppErrorModal,
+  useResetErrorModal,
+} from '../../../recoil/setAppErrorModal/setAppErrorModal.atom';
 
 const StatusErrorModal = () => {
-  const dispatch = useDispatch();
-
-  const { show, title, message } = useSelector(
-    (state: RootState) => state.appReducer.commonComponents.errorModal
-  );
+  const { show, title, message } = useAppErrorModal();
+  const resetErrorModal = useResetErrorModal();
 
   return (
     <ConfirmModal
       show={show}
       title={title || 'System error'}
       message={message || "This app isn't working If the problem continues, contact support."}
-      onPressPositive={() => dispatch(hideErrorModal())}
+      onPressPositive={resetErrorModal}
       error
     />
   );

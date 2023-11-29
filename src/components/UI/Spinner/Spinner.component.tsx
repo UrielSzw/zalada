@@ -1,12 +1,11 @@
 import React from 'react';
 import { ActivityIndicator, Modal, View } from 'react-native';
 import { theme } from '../../../theme';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux';
+import { useShowSpinner } from '../../../recoil/spinner/spinner.atom';
 import { styles } from './Spinner.styles';
 
 const Spinner: React.FC = () => {
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
+  const showSpinner = useShowSpinner();
   return (
     <Modal animationType="fade" visible={showSpinner} transparent={true}>
       <View style={styles.modal}>

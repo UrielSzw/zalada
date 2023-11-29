@@ -1,6 +1,6 @@
-import { store } from '../redux';
-import { setShowSpinner } from '../redux/commonComponents';
+import { setRecoil } from 'recoil-nexus';
+import { spinnerState } from '../recoil/spinner/spinner.atom';
 
 export const setLoading = (show: boolean) => {
-  store.dispatch(setShowSpinner(show));
+  setRecoil(spinnerState, show);
 };

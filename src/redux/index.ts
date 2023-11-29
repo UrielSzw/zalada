@@ -1,11 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import cartReducer from './cart.slice';
-import commonComponentReducer from './commonComponents';
 import userReducer from './user.slice';
 
 const appReducer = combineReducers({
   cart: cartReducer,
-  commonComponents: commonComponentReducer,
   user: userReducer,
 });
 

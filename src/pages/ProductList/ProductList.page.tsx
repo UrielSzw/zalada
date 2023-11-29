@@ -2,18 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, Keyboard, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import { useProducts } from '../../hooks/useProducts';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
 import { FormikTextInput, StyledText } from '../../components';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
 import { Product } from '../../types/Product.types';
+import { useShowSpinner } from '../../recoil/spinner/spinner.atom';
 import { getStyles } from './ProductList.styles';
 
 export const ProductList = ({ navigation, route }: any) => {
   const { width } = Dimensions.get('window');
   const styles = getStyles({ width });
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
+  const showSpinner = useShowSpinner();
   const { productsList } = useProducts();
   const [products, setProducts] = useState<Product[]>([]);
   const search = route?.params?.values?.search;

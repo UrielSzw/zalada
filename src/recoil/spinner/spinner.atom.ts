@@ -1,4 +1,4 @@
-import { atom, useSetRecoilState } from 'recoil';
+import { atom, useRecoilValue } from 'recoil';
 
 export type SpinnerStateType = boolean;
 
@@ -7,4 +7,4 @@ export const spinnerState = atom<SpinnerStateType>({
   default: false,
 });
 
-export const SetSpinnerState = () => useSetRecoilState(spinnerState);
+export const useShowSpinner = (): SpinnerStateType => useRecoilValue(spinnerState);

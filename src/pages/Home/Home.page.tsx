@@ -8,14 +8,15 @@ import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import { useProducts } from '../../hooks/useProducts';
 import SearchIcon from '../../assets/base/icons/search_icon';
+import { useShowSpinner } from '../../recoil/spinner/spinner.atom';
 import { getStyles } from './HomePage.styles';
 
 export const Home = ({ navigation }: any) => {
   const { width } = Dimensions.get('window');
   const styles = getStyles({ width });
 
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
-  const { userName } = useSelector((state: RootState) => state.appReducer.user.userData);
+  const showSpinner = useShowSpinner();
+  const { firstname, lastname } = useSelector((state: RootState) => state.appReducer.user);
 
   const { productsList } = useProducts();
 
@@ -30,7 +31,7 @@ export const Home = ({ navigation }: any) => {
           color="white"
           variant="h4"
           style={{ marginTop: 20, marginBottom: 4 }}
-        >{`Hi, ${userName}`}</StyledText>
+        >{`Hi, ${firstname} ${lastname}`}</StyledText>
         <StyledText color="white" variant="h2" style={{ marginBottom: 25 }}>
           What are you looking for today?
         </StyledText>

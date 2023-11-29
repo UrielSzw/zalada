@@ -1,6 +1,6 @@
-import { store } from '../redux';
-import { setAppErrorModal } from '../redux/commonComponents';
+import { setRecoil } from 'recoil-nexus';
+import { setAppErrorModalState } from '../recoil/setAppErrorModal/setAppErrorModal.atom';
 
 export const setAppError = (title?: string, message?: string, show = true) => {
-  store.dispatch(setAppErrorModal({ show, title, message }));
+  setRecoil(setAppErrorModalState, { show, title, message });
 };
