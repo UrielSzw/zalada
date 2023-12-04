@@ -1,11 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { theme } from '../../theme';
 
-type Props = {
-  width: any;
-};
+const { width } = Dimensions.get('window');
 
-export const getStyles = (props: Props) =>
+export const getStyles = () =>
   StyleSheet.create({
     container: {
       backgroundColor: theme.colors.gray10,
@@ -24,7 +22,7 @@ export const getStyles = (props: Props) =>
     },
     sliderItem: {
       marginRight: 20,
-      maxWidth: props?.width * 0.7,
+      width: width * 0.7,
     },
     row: {
       flexDirection: 'row',
