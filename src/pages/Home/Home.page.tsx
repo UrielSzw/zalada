@@ -59,22 +59,21 @@ export const Home = ({ navigation }: any) => {
       </View>
       <View style={styles.container}>
         <View style={styles.body}>
-          {productsList && (
-            <FlatList
-              horizontal
-              style={styles.horizontalScroll}
-              showsHorizontalScrollIndicator={false}
-              data={productsList}
-              renderItem={({ item, index }) => (
-                <Banner
-                  key={index}
-                  product={item}
-                  style={styles.sliderItem}
-                  navigation={navigation}
-                />
-              )}
-            />
-          )}
+          <FlatList
+            horizontal
+            style={styles.horizontalScroll}
+            showsHorizontalScrollIndicator={false}
+            data={productsList}
+            renderItem={({ item, index }) => (
+              <Banner
+                key={index}
+                product={item}
+                style={styles.sliderItem}
+                navigation={navigation}
+              />
+            )}
+          />
+
           <View style={styles.row}>
             <StyledText variant="h4">Featured Products</StyledText>
             <TouchableOpacity>
@@ -83,19 +82,17 @@ export const Home = ({ navigation }: any) => {
               </StyledText>
             </TouchableOpacity>
           </View>
-          {productsList && (
-            <FlatList
-              horizontal
-              style={styles.horizontalScroll}
-              showsHorizontalScrollIndicator={false}
-              data={productsList.reverse()}
-              renderItem={({ item, index }) => (
-                <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
-                  <ProductCardItem product={item} navigation={navigation} />
-                </View>
-              )}
-            />
-          )}
+          <FlatList
+            horizontal
+            style={styles.horizontalScroll}
+            showsHorizontalScrollIndicator={false}
+            data={productsList?.reverse()}
+            renderItem={({ item, index }) => (
+              <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
+                <ProductCardItem product={item} navigation={navigation} />
+              </View>
+            )}
+          />
         </View>
       </View>
     </>
