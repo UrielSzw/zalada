@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
   Modal,
-  ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Animated,
+  FlatList,
 } from 'react-native';
 import { StyledText } from '../StyledText/StyledText';
 import { styles } from './DropdownModal.styles';
@@ -79,17 +79,18 @@ export const DropdownModal: React.FC<Props> = ({
           <TouchableWithoutFeedback>
             <StyledText variant="h4" children={title} style={styles.title} />
           </TouchableWithoutFeedback>
-          <ScrollView contentContainerStyle={styles.options}>
-            {showOptions?.map((option, index) => (
+          <FlatList
+            data={showOptions}
+            renderItem={({ item, index }) => (
               <TouchableOpacity
                 key={index}
-                style={dropdownValue === option ? styles.optionSelected : styles.option}
-                onPress={() => handleOnPress(option)}
+                style={dropdownValue === item ? styles.optionSelected : styles.option}
+                onPress={() => handleOnPress(item)}
               >
-                <StyledText children={option} />
+                <StyledText children={item} />
               </TouchableOpacity>
-            ))}
-          </ScrollView>
+            )}
+          />
         </Animated.View>
       </TouchableOpacity>
     </Modal>
