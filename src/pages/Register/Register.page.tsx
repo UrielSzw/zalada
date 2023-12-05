@@ -8,8 +8,8 @@ import { RegisterForm } from '../../components/RegisterForm/RegisterForm.compone
 import { queryKeys } from '../../common/constants/queryKeys';
 import { register } from '../../service/api.service';
 import { setAppError, setLoading } from '../../utils';
-import { getStyles } from './Register.styles';
 import { apiDispatch } from '../../service/api.middleware';
+import { getStyles } from './Register.styles';
 
 type FormData = {
   firstName: string;
