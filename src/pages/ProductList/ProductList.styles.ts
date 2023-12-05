@@ -1,9 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
+import { useStyles } from '../../utils';
 
-const { width } = Dimensions.get('window');
+export const getStyles = () => {
+  const { setWidth } = useStyles();
 
-export const getStyles = () =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -21,8 +22,9 @@ export const getStyles = () =>
     },
     list: {
       justifyContent: 'space-between',
-      gap: width > 484 ? 15 : 15 / (484 / width),
-      paddingHorizontal: width > 484 ? 15 : 15 / (484 / width),
+      gap: setWidth(15),
+      paddingHorizontal: setWidth(15),
       paddingVertical: 24,
     },
   });
+};
