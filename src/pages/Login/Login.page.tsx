@@ -5,14 +5,13 @@ import * as yup from 'yup';
 import { AxiosResponse } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { LoginForm } from '../../components';
 import { PATHS } from '../../routes/paths';
+import { apiDispatch } from '../../service/api.middleware';
 import ConfirmModal from '../../components/UI/Modal/ConfirmModal.component';
 import { FormData } from '../../utils/commonLogin';
 import { login } from '../../service/api.service';
 import { queryKeys } from '../../common/constants/queryKeys';
-import { setAppError, setLoading } from '../../utils';
 import { setUserData } from '../../redux/user.slice';
 import { useAppDispatch } from '../../redux/hook';
 import { getStyles } from './Login.styles';
@@ -32,6 +31,10 @@ const initialValues: FormData = {
   password: '',
 };
 
+interface BodyType {
+  body: FormData;
+}
+
 export const Login = ({ navigation, route }: any) => {
   const dispatch = useAppDispatch();
   const [triggerValidation, settriggerValidation] = useState(false);
@@ -41,31 +44,18 @@ export const Login = ({ navigation, route }: any) => {
 
   const { mutate } = useMutation({
     mutationKey: [queryKeys.login],
-    mutationFn: login,
-    onMutate: () => {
-      setLoading(true);
-    },
-    onError: (error) => {
-      setAppError(error.name, error.message);
-    },
+    mutationFn: (args: BodyType) => apiDispatch(login, args),
     onSuccess: (result) => {
-      handleUserLogin(result);
-    },
-    onSettled: () => {
-      setLoading(false);
+      apiDispatch(handleUserLogin, result);
     },
   });
 
   const handleUserLogin = async (apiResponse: AxiosResponse<any, any>) => {
-    try {
-      if (apiResponse) {
-        const loggedUser = apiResponse?.data?.data?.user;
-        await AsyncStorage.setItem('userData', JSON.stringify(loggedUser));
-        dispatch(setUserData(loggedUser));
-        navigation.navigate(PATHS.HOME);
-      }
-    } catch (e) {
-      console.log(e);
+    if (apiResponse) {
+      const loggedUser = apiResponse?.data?.user;
+      await AsyncStorage.setItem('userData', JSON.stringify(loggedUser));
+      dispatch(setUserData(loggedUser));
+      navigation.navigate(PATHS.HOME);
     }
   };
 
