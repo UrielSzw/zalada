@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, FlatList, TouchableOpacity, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import { useProducts } from '../../hooks/useProducts';
 import { FormikTextInput, StyledText } from '../../components';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
 import { Product } from '../../types/Product.types';
+import { useStyles } from '../../utils';
 import { getStyles } from './ProductList.styles';
 
 export const ProductList = ({ navigation, route }: any) => {
-  const { width } = Dimensions.get('window');
+  const { setWidth } = useStyles();
   const styles = getStyles();
   const { productsList } = useProducts();
   const [products, setProducts] = useState<Product[]>([]);
@@ -77,7 +78,7 @@ export const ProductList = ({ navigation, route }: any) => {
             </StyledText>
           }
           columnWrapperStyle={{
-            gap: width > 484 ? 15 : 15 / (484 / width),
+            gap: setWidth(15),
           }}
         />
       </View>

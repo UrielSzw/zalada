@@ -2,7 +2,6 @@ import { setAppError, setLoading } from '../utils';
 
 export const apiDispatch = async (apiFn: any, ...args: any) => {
   try {
-    console.log(args);
     setLoading(true);
     const response = await apiFn(...args);
 
