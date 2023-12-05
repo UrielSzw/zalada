@@ -7,7 +7,6 @@ import { PATHS } from '../../routes/paths';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm.component';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { register } from '../../service/api.service';
-import { setAppError, setLoading } from '../../utils';
 import { apiDispatch } from '../../service/api.middleware';
 import { getStyles } from './Register.styles';
 
