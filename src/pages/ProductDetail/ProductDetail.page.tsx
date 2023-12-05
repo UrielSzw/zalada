@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { Button, DropdownModal, StyledText } from '../../components';
 import { useDispatch } from 'react-redux';
@@ -73,15 +73,16 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
   const overviewSection = () => {
     return (
       <View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {currentProduct
-            ? currentProduct.overview.map((image, index) => (
-                <View style={styles.card} key={index}>
-                  <Image source={{ uri: image }} style={styles.image} />
-                </View>
-              ))
-            : null}
-        </ScrollView>
+        <FlatList
+          data={currentProduct.overview}
+          renderItem={({ item, index }) => (
+            <View style={styles.card} key={index}>
+              <Image source={{ uri: item }} style={styles.image} />
+            </View>
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
 
         <View style={styles.anotherProductContainer}>
           <View style={styles.textBox}>
@@ -90,16 +91,17 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
               <StyledText>See All</StyledText>
             </TouchableOpacity>
           </View>
-          <ScrollView style={styles.scrollBox} horizontal showsHorizontalScrollIndicator={false}>
-            {suggestedProducts &&
-              suggestedProducts.map((product, index) => {
-                return (
-                  <View style={{ padding: 10 }} key={index}>
-                    <ProductCardItem product={product} navigation={navigation} />
-                  </View>
-                );
-              })}
-          </ScrollView>
+          <FlatList
+            data={suggestedProducts}
+            renderItem={({ item, index }) => (
+              <View style={{ padding: 10 }} key={index}>
+                <ProductCardItem product={item} navigation={navigation} />
+              </View>
+            )}
+            style={styles.scrollBox}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
       </View>
     );
