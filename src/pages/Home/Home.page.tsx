@@ -1,23 +1,29 @@
 import React from 'react';
-import { View, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import { useQuery } from '@tanstack/react-query';
 import { RootState } from '../../redux';
 import { Banner, FormikTextInput, StyledText } from '../../components';
 import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
-import { useProducts } from '../../hooks/useProducts';
 import SearchIcon from '../../assets/base/icons/search_icon';
+import { queryKeys } from '../../common/constants/queryKeys';
+import { apiDispatch } from '../../service/api.middleware';
+import { getProducts } from '../../service/api.service';
+import { Product } from '../../types';
 import { getStyles } from './HomePage.styles';
 
 export const Home = ({ navigation }: any) => {
-  const { width } = Dimensions.get('window');
-  const styles = getStyles({ width });
+  const styles = getStyles();
+  const { firstname } = useSelector((state: RootState) => state.appReducer.user);
 
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
-  const { userName } = useSelector((state: RootState) => state.appReducer.user.userData);
+  const { data: productsListFetched } = useQuery({
+    queryKey: [queryKeys.product],
+    queryFn: () => apiDispatch(getProducts),
+  });
 
-  const { productsList } = useProducts();
+  const productsList: Product[] = productsListFetched?.data;
 
   const handleSearch = (values: any) => {
     navigation.navigate(PATHS.PLP, { values });
@@ -30,7 +36,7 @@ export const Home = ({ navigation }: any) => {
           color="white"
           variant="h4"
           style={{ marginTop: 20, marginBottom: 4 }}
-        >{`Hi, ${userName}`}</StyledText>
+        >{`Hi, ${firstname}`}</StyledText>
         <StyledText color="white" variant="h2" style={{ marginBottom: 25 }}>
           What are you looking for today?
         </StyledText>
@@ -51,51 +57,44 @@ export const Home = ({ navigation }: any) => {
           }}
         </Formik>
       </View>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.body}>
-          {!showSpinner ? (
-            <>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={styles.horizontalScroll}
-              >
-                {productsList &&
-                  productsList?.map((item, index) => (
-                    <Banner
-                      key={index}
-                      product={item}
-                      style={styles.sliderItem}
-                      navigation={navigation}
-                    />
-                  ))}
-              </ScrollView>
-              <View style={styles.row}>
-                <StyledText variant="h4">Featured Products</StyledText>
-                <TouchableOpacity>
-                  <StyledText color="gray40" onPress={() => navigation.navigate(PATHS.PLP)}>
-                    See All
-                  </StyledText>
-                </TouchableOpacity>
+          <FlatList
+            horizontal
+            style={styles.horizontalScroll}
+            showsHorizontalScrollIndicator={false}
+            data={productsList}
+            renderItem={({ item, index }) => (
+              <Banner
+                key={index}
+                product={item}
+                style={styles.sliderItem}
+                navigation={navigation}
+              />
+            )}
+          />
+
+          <View style={styles.row}>
+            <StyledText variant="h4">Featured Products</StyledText>
+            <TouchableOpacity>
+              <StyledText color="gray40" onPress={() => navigation.navigate(PATHS.PLP)}>
+                See All
+              </StyledText>
+            </TouchableOpacity>
+          </View>
+          <FlatList
+            horizontal
+            style={styles.horizontalScroll}
+            showsHorizontalScrollIndicator={false}
+            data={productsList?.reverse()}
+            renderItem={({ item, index }) => (
+              <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
+                <ProductCardItem product={item} navigation={navigation} />
               </View>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={styles.horizontalScroll}
-              >
-                {productsList &&
-                  productsList.reverse().map((product, index) => (
-                    <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
-                      <ProductCardItem product={product} navigation={navigation} />
-                    </View>
-                  ))}
-              </ScrollView>
-            </>
-          ) : (
-            <></>
-          )}
+            )}
+          />
         </View>
-      </ScrollView>
+      </View>
     </>
   );
 };

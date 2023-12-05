@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
 import { Button, DropdownModal, StyledText } from '../../components';
 import { useDispatch } from 'react-redux';
 import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import { CartItem, addItemToCart } from '../../redux/cart.slice';
-import { useProduct } from '../../hooks/useProduct';
 import { ArrowIcon } from '../../assets';
+import { queryKeys } from '../../common/constants/queryKeys';
+import { getProductById, getProducts } from '../../service/api.service';
+import { Product } from '../../types';
+import { apiDispatch } from '../../service/api.middleware';
 import { getStyles } from './ProductDetail.styles';
 
 type Props = {
@@ -25,7 +29,18 @@ export const ProductDetail: React.FC<Props> = ({ route, navigation }) => {
 
   const { productId } = route.params;
 
-  const { currentProduct, suggestedProducts } = useProduct(productId);
+  const { data: currentProductFetched } = useQuery({
+    queryKey: [queryKeys.product, productId],
+    queryFn: () => apiDispatch(getProductById, productId),
+  });
+
+  const { data: suggestedProductsFetched } = useQuery({
+    queryKey: [queryKeys.product],
+    queryFn: () => apiDispatch(getProducts),
+  });
+
+  const currentProduct: Product = currentProductFetched?.data;
+  const suggestedProducts: Product[] = suggestedProductsFetched?.data;
 
   const addToCart = () => {
     const productUnit = Number(dropdownValue.slice(0, 1));

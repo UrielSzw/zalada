@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.regular,
     borderWidth: 1,
     borderColor: theme.colors.gray30,
-    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 12,

@@ -3,7 +3,6 @@ import tma_hd_wireless_1 from './images/tma_hd_wireless_1.png';
 import tma_hd_wireless_2 from './images/tma_hd_wireless_2.png';
 import headphonesImage from './images/headphones.png';
 import headphonesImageLg from './images/headphones_lg.png';
-import user_icon from './images/user.png';
 import avatarGeneric from './images/avatarGeneric.png';
 
 export * from './base/icons/arrow_banner_icon';
@@ -26,5 +25,4 @@ export const ProductImage1 = tma_hd_wireless_1;
 export const ProductImage2 = tma_hd_wireless_2;
 export const imageSmall = headphonesImage;
 export const imageLarge = headphonesImageLg;
-export const defaultUser = user_icon;
 export const avatarImage = avatarGeneric;

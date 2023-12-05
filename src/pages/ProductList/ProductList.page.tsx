@@ -68,7 +68,7 @@ export const ProductList = ({ navigation, route }: any) => {
       </View>
       <View style={styles.listWrapper}>
         <ScrollView contentContainerStyle={styles.list}>
-          {!showSpinner && (
+          {!!showSpinner && (
             <>
               {products?.length > 0 ? (
                 products.map((product, index) => (
