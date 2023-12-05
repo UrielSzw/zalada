@@ -5,7 +5,7 @@ import { useStyles } from '../../utils';
 export const getStyles = () => {
   const { setWidth } = useStyles();
 
-  StyleSheet.create({
+  return StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: theme.colors.white,

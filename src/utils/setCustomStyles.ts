@@ -11,7 +11,7 @@ export const useStyles = () => {
       return dpi;
     }
 
-    return dpi / MIN_WIDTH / width;
+    return dpi / (MIN_WIDTH / width);
   };
 
   const setWidthPercentage = (percentage: number) => {
@@ -23,7 +23,7 @@ export const useStyles = () => {
       return percentage;
     }
 
-    return percentage / MIN_HEIGHT / height;
+    return percentage / (MIN_HEIGHT / height);
   };
 
   const setHeightPercentage = (percentage: number) => {
