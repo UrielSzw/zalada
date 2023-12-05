@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { FlatList, ScrollView, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Button, StyledText } from '../../components';
 import { resetCart } from '../../redux/cart.slice';
@@ -28,34 +28,39 @@ export const Cart = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.productList}
-        contentContainerStyle={{ gap: 30 }}
-        showsVerticalScrollIndicator={false}
-      >
-        {cartItems.length ? (
-          cartItems.map((cartItem, index) => (
-            <ProductCartItem key={index} cartItem={cartItem} readOnly={!isCart} />
-          ))
-        ) : (
-          <StyledText children="There are no products yet" />
-        )}
-      </ScrollView>
+      <View style={styles.productList}>
+        <FlatList
+          data={cartItems}
+          renderItem={({ item }) => <ProductCartItem cartItem={item} readOnly={!isCart} />}
+          keyExtractor={(item) => item.productId}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ gap: 30 }}
+          style={styles.productList}
+          ListEmptyComponent={<StyledText children="There are no products yet" />}
+        />
+      </View>
       {!isCart && underlineButton !== undefined ? (
-        <ScrollView style={styles.payment}>
+        <View style={styles.payment}>
           <StyledText variant="h4" children="Payment method" style={{ marginBottom: 18 }} />
           <View style={styles.paymentData}>
-            {['Cash', 'Agree with the seller'].map((text, index) => (
-              <Button
-                selected={underlineButton === text}
-                variant="tapbar"
-                onPress={() => setUnderlineButton(text)}
-                text={text}
-                key={index}
-              />
-            ))}
+            <FlatList
+              numColumns={2}
+              data={['Cash', 'Agree with the seller']}
+              renderItem={({ item }) => (
+                <Button
+                  selected={underlineButton === item}
+                  variant="tapbar"
+                  onPress={() => setUnderlineButton(item)}
+                  text={item}
+                  key={item}
+                />
+              )}
+              keyExtractor={(item) => item}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 18 }}
+            />
           </View>
-        </ScrollView>
+        </View>
       ) : (
         <></>
       )}
