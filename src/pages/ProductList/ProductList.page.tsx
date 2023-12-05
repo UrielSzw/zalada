@@ -9,32 +9,50 @@ import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.co
 import SearchIcon from '../../assets/base/icons/search_icon';
 import { Product } from '../../types/Product.types';
 import { getStyles } from './ProductList.styles';
+import { queryKeys } from '../../common/constants/queryKeys';
+import { apiDispatch } from '../../service/api.middleware';
+import { getProducts } from '../../service/api.service';
+import { useQuery } from '@tanstack/react-query';
 
 export const ProductList = ({ navigation, route }: any) => {
   const { width } = Dimensions.get('window');
   const styles = getStyles({ width });
   const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
-  const { productsList } = useProducts();
+  // const { productsList } = useProducts();
   const [products, setProducts] = useState<Product[]>([]);
   const search = route?.params?.values?.search;
   const isFirstLoad = useRef<boolean>(true);
 
+  const { data: featuredProductsFetched } = useQuery({
+    queryKey: [queryKeys.product],
+    queryFn: () => apiDispatch(getProducts),
+  });
+
+  const featuredProducts: Product[] = featuredProductsFetched?.data;
+
   const handleNewSearch = (text: any) => {
     // Keyboard.dismiss();
     if (text.search === '') {
-      return setProducts(productsList);
+      return setProducts(featuredProducts);
     }
-    setProducts(productsList.filter((product) => product.name.includes(text.search)));
+    const filteredProducts = featuredProducts.filter((product) =>
+      product.name.includes(text.search)
+    );
+    setProducts(filteredProducts);
   };
 
   useEffect(() => {
     if (search && isFirstLoad) {
       isFirstLoad.current = false;
-      setProducts(productsList.filter((product) => product.name.includes(search)));
+      setProducts(featuredProducts.filter((product) => product.name.includes(search)));
     } else if (isFirstLoad) {
-      setProducts(productsList);
+      setProducts(featuredProducts);
     }
-  }, [productsList]);
+  }, [featuredProducts]);
+
+  useEffect(() => {
+    console.log(featuredProducts.length);
+  }, [featuredProducts]);
 
   return (
     <View style={styles.container}>
