@@ -1,24 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, Keyboard, ScrollView, TouchableOpacity, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
-import { useProducts } from '../../hooks/useProducts';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
 import { FormikTextInput, StyledText } from '../../components';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
 import { Product } from '../../types/Product.types';
-import { getStyles } from './ProductList.styles';
+import { useStyles } from '../../utils';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { apiDispatch } from '../../service/api.middleware';
 import { getProducts } from '../../service/api.service';
 import { useQuery } from '@tanstack/react-query';
+import { getStyles } from './ProductList.styles';
 
 export const ProductList = ({ navigation, route }: any) => {
-  const { width } = Dimensions.get('window');
-  const styles = getStyles({ width });
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
-  // const { productsList } = useProducts();
+  const { setWidth } = useStyles();
+  const styles = getStyles();
   const [products, setProducts] = useState<Product[]>([]);
   const search = route?.params?.values?.search;
   const isFirstLoad = useRef<boolean>(true);
@@ -50,14 +46,10 @@ export const ProductList = ({ navigation, route }: any) => {
     }
   }, [featuredProducts]);
 
-  useEffect(() => {
-    console.log(featuredProducts.length);
-  }, [featuredProducts]);
-
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
-        <StyledText color="white" variant="h4" style={styles.sectionTitle} children="Products" />
+        <StyledText color="white" variant="h4" children="Products" />
         <StyledText
           color="white"
           variant="h2"
@@ -85,21 +77,22 @@ export const ProductList = ({ navigation, route }: any) => {
         </Formik>
       </View>
       <View style={styles.listWrapper}>
-        <ScrollView contentContainerStyle={styles.list}>
-          {!!showSpinner && (
-            <>
-              {products?.length > 0 ? (
-                products.map((product, index) => (
-                  <ProductCardItem key={index} product={product} navigation={navigation} />
-                ))
-              ) : (
-                <StyledText variant="h4" style={{ paddingLeft: 10 }}>
-                  No products available
-                </StyledText>
-              )}
-            </>
+        <FlatList
+          data={products}
+          contentContainerStyle={styles.list}
+          numColumns={2}
+          renderItem={({ item, index }) => (
+            <ProductCardItem key={index} product={item} navigation={navigation} />
           )}
-        </ScrollView>
+          ListEmptyComponent={
+            <StyledText variant="h4" style={{ paddingLeft: 10 }}>
+              No products available
+            </StyledText>
+          }
+          columnWrapperStyle={{
+            gap: setWidth(15),
+          }}
+        />
       </View>
     </View>
   );

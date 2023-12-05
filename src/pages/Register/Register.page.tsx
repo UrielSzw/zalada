@@ -7,7 +7,7 @@ import { PATHS } from '../../routes/paths';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm.component';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { register } from '../../service/api.service';
-import { setAppError, setLoading } from '../../utils';
+import { apiDispatch } from '../../service/api.middleware';
 import { getStyles } from './Register.styles';
 
 type FormData = {
@@ -19,6 +19,31 @@ type FormData = {
   region: string;
   street: string;
   telephone: string;
+};
+
+type BodyType = {
+  customer: {
+    email: string;
+    firstname: string;
+    lastname: string;
+    addresses: {
+      defaultShipping: boolean;
+      defaultBilling: boolean;
+      firstname: string;
+      lastname: string;
+      region: {
+        regionCode: string;
+        region: string;
+        regionId: string;
+      };
+      postcode: string;
+      street: string[];
+      city: string;
+      telephone: string;
+      countryId: string;
+    }[];
+  };
+  password: string;
 };
 
 export const registerValidationSchema = yup.object().shape({
@@ -66,17 +91,9 @@ export const Register = ({ navigation }: any) => {
 
   const { mutate } = useMutation({
     mutationKey: [queryKeys.register],
-    mutationFn: register,
-    onMutate: () => {
-      setLoading(true);
-    },
-    onError: (error) => {
-      setAppError(error.name, error.message);
-    },
+    mutationFn: (args: BodyType) => apiDispatch(register, args),
+
     onSuccess: () => navigation.navigate(PATHS.LOGIN, { success: true }),
-    onSettled: () => {
-      setLoading(false);
-    },
   });
 
   const handleRegister = (formData: FormData) => {

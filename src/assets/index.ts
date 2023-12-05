@@ -4,6 +4,7 @@ import tma_hd_wireless_2 from './images/tma_hd_wireless_2.png';
 import headphonesImage from './images/headphones.png';
 import headphonesImageLg from './images/headphones_lg.png';
 import avatarGeneric from './images/avatarGeneric.png';
+import userImg from './images/user.png';
 
 export * from './base/icons/arrow_banner_icon';
 export * from './base/icons/arrow_icon';
@@ -26,3 +27,4 @@ export const ProductImage2 = tma_hd_wireless_2;
 export const imageSmall = headphonesImage;
 export const imageLarge = headphonesImageLg;
 export const avatarImage = avatarGeneric;
+export const userImage = userImg;

@@ -1,30 +1,29 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
+import { useStyles } from '../../utils';
 
-export const getStyles = (props?: any) =>
-  StyleSheet.create({
+export const getStyles = () => {
+  const { setWidth } = useStyles();
+  return StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: theme.colors.white,
     },
     titleWrapper: {
       paddingTop: 18,
       backgroundColor: theme.colors.primary,
       paddingHorizontal: 25,
-      paddingBottom: 0,
-    },
-    sectionTitle: {
-      paddingBottom: 0,
+      flex: 1,
     },
     listWrapper: {
       backgroundColor: theme.colors.gray20,
+      flex: 4,
     },
     list: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
       justifyContent: 'space-between',
-      gap: props?.width > 484 ? 15 : 15 / (484 / props?.width),
-      paddingHorizontal: props?.width > 484 ? 15 : 15 / (484 / props?.width),
-      paddingTop: 24,
-      paddingBottom: 430,
+      gap: setWidth(15),
+      paddingHorizontal: setWidth(15),
+      paddingVertical: 24,
     },
   });
+};

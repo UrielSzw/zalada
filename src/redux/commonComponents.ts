@@ -27,7 +27,6 @@ const commonComponents = createSlice({
     setShowSpinner: (state, action: PayloadAction<boolean>) => {
       // When showSpinner is grater than 0, the Spinner component will be rendered
       state.showSpinner = action.payload ? state.showSpinner + 1 : state.showSpinner - 1;
-      console.log(state.showSpinner);
     },
     setAppErrorModal: (state, action: PayloadAction<ErrorModalState>) => {
       const { title = '', message = '' } = action.payload;

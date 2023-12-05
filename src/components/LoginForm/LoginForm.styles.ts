@@ -1,9 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { theme } from '../../theme';
+import { useStyles } from '../../utils';
 
 export const getStyles = () => {
-  const { height } = Dimensions.get('window');
+  const { setHeight } = useStyles();
   const keyboard = useKeyboard();
 
   return StyleSheet.create({
@@ -16,8 +17,8 @@ export const getStyles = () => {
     },
     titleWrapper: {
       minHeight: 51 * 2,
-      marginTop: height > 800 ? 35 : 35 / (800 / height),
-      marginBottom: height > 800 ? 250 : 200 / (800 / height),
+      marginTop: setHeight(35),
+      marginBottom: setHeight(200),
       alignItems: 'center',
       opacity: keyboard?.keyboardShown ? 0 : 1,
     },

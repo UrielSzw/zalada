@@ -1,12 +1,13 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
+import { useStyles } from '../../utils';
 
-export const getStyles = (props?: any) => {
-  const { width, height } = Dimensions.get('window');
+export const getStyles = () => {
+  const { setHeight, setWidthPercentage } = useStyles();
 
   return StyleSheet.create({
     container: {
-      width: width * 0.45,
+      width: setWidthPercentage(45),
       backgroundColor: theme.colors.white,
       paddingHorizontal: 10,
       paddingVertical: 15,
@@ -14,7 +15,7 @@ export const getStyles = (props?: any) => {
       elevation: 0,
     },
     imageWrapper: {
-      height: height > 800 ? 125 : 125 / (800 / height),
+      height: setHeight(125),
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -22,8 +23,8 @@ export const getStyles = (props?: any) => {
     },
     image: {
       resizeMode: 'contain',
-      width: width * 0.35,
-      height: height > 800 ? 125 : 125 / (800 / height),
+      width: setWidthPercentage(35),
+      height: setHeight(125),
     },
     productTitle: {
       height: theme.fontSize.md * 2,
