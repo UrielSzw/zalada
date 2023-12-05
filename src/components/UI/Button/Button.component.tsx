@@ -1,75 +1,60 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import { StyledText } from '../StyledText/StyledText';
-import { ArrowIcon, BannerIcon, FilterIcon } from '../../../assets';
-import { theme } from '../../../theme';
 import { styles } from './Button.style';
 
+type ButtonVariants = 'primary' | 'secondary' | 'transparent' | 'tapbar' | 'rounded';
+
 interface Props extends TouchableOpacityProps {
-  text: string;
-  primary?: boolean;
-  secondary?: boolean;
   big?: boolean;
-  rounded?: boolean;
-  arrowIcon?: boolean;
-  filterIcon?: boolean;
-  bannerIcon?: boolean;
-  tapbar?: boolean;
-  underline?: boolean;
-  red?: boolean;
-  disabled?: boolean;
-  green?: boolean;
+  variant?: ButtonVariants;
+  text: string;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  selected?: boolean;
 }
 
 export const Button: React.FC<Props> = ({
-  text,
-  primary,
-  secondary,
   big,
-  rounded,
-  arrowIcon,
-  filterIcon,
-  bannerIcon,
-  tapbar,
-  underline,
-  red,
+  variant = 'primary',
+  text,
+  iconLeft,
+  iconRight,
   disabled,
-  green,
+  selected,
   style = {},
   ...props
 }) => {
   const buttonStyles = [
     styles.default,
-    primary && styles.primary,
-    secondary && styles.secondary,
-    big && styles.big,
-    rounded && styles.rounded,
-    arrowIcon && styles.icon,
-    filterIcon && styles.icon,
-    bannerIcon && styles.rounded,
-    red && { ...styles.primary, ...styles.redBackground },
     disabled && styles.greyBackground,
-    green && { ...styles.primary, ...styles.greenBackground },
-    !primary && !rounded && !bannerIcon && !tapbar && styles.secondary,
+    variant && styles[variant],
+    variant === 'rounded' && selected && styles.roundedSelected,
+    big && styles.big,
     style,
   ];
 
-  const textStyles = [
-    rounded && { color: theme.colors.gray30 },
-    (big || bannerIcon) && { fontSize: theme.fontSize.md },
-    (primary || red) && { color: theme.colors.white },
-    bannerIcon && { color: theme.colors.primary },
+  const wrapperStyles = [
+    variant === 'tapbar' && styles.tapbarWrapper,
+    (!!iconLeft || !!iconRight) && { paddingHorizontal: 15 },
   ];
+
+  const textStyles = [
+    variant === 'tapbar' && styles.tapbarText,
+    variant === 'primary' && { color: 'white' },
+    variant === 'rounded' && selected && { color: 'white' },
+  ];
+
+  const selectedStyles = [styles.selected, variant === 'tapbar' && selected && styles.visible];
 
   return (
     <TouchableOpacity disabled={disabled} activeOpacity={0.8} style={buttonStyles} {...props}>
-      {filterIcon && <FilterIcon />}
-      <View style={tapbar && styles.tapbar}>
-        <StyledText tapbar={tapbar} lineHeightPrimary style={textStyles} children={text} />
-        {underline && <View style={styles.underline} />}
+      {iconLeft && iconLeft}
+      <View style={wrapperStyles}>
+        <StyledText style={textStyles}>{text}</StyledText>
+        <View style={selectedStyles} />
       </View>
-      {arrowIcon && <ArrowIcon secondary={secondary} />}
-      {bannerIcon && <BannerIcon />}
+      {iconRight && iconRight}
     </TouchableOpacity>
   );
 };

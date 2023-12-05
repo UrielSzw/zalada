@@ -7,6 +7,7 @@ import { useCart } from '../../hooks/useCart';
 import ProductCartItem from '../../components/CartItem/ProductCartItem.component';
 import ConfirmModal from '../../components/UI/Modal/ConfirmModal.component';
 import { PATHS } from '../../routes/paths';
+import { ArrowIcon } from '../../assets';
 import { styles } from './Cart.styles';
 
 export const Cart = ({ route, navigation }: any) => {
@@ -46,8 +47,8 @@ export const Cart = ({ route, navigation }: any) => {
           <View style={styles.paymentData}>
             {['Cash', 'Agree with the seller'].map((text, index) => (
               <Button
-                tapbar
-                underline={underlineButton === text}
+                selected={underlineButton === text}
+                variant="tapbar"
                 onPress={() => setUnderlineButton(text)}
                 text={text}
                 key={index}
@@ -68,16 +69,14 @@ export const Cart = ({ route, navigation }: any) => {
           <Button
             onPress={() => navigation.navigate(PATHS.CHECKOUT)}
             text="Proceed to Checkout"
-            primary
             big
-            arrowIcon
+            iconRight={<ArrowIcon />}
             {...(!cartItems.length && { disabled: true })}
           />
         ) : (
           <Button
             onPress={() => setshowSuccessModal(!showSuccesModal)}
             text="BUY"
-            primary
             big
             {...(!cartItems.length && { disabled: true })}
           />

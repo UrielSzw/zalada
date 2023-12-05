@@ -5,8 +5,8 @@ type Props = {
   secondary?: boolean;
 };
 
-export const ArrowIcon: React.FC<Props> = ({ secondary }) => (
-  <Svg width={25} height={26} fill="none">
+export const ArrowIcon: React.FC<Props> = ({ secondary, ...rest }) => (
+  <Svg width={25} height={26} fill="none" {...rest}>
     <Path
       stroke={secondary ? '#000' : '#fff'}
       strokeLinecap="round"
