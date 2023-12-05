@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, Keyboard, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import { useProducts } from '../../hooks/useProducts';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
 import { FormikTextInput, StyledText } from '../../components';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
@@ -12,8 +10,7 @@ import { getStyles } from './ProductList.styles';
 
 export const ProductList = ({ navigation, route }: any) => {
   const { width } = Dimensions.get('window');
-  const styles = getStyles({ width });
-  const { showSpinner } = useSelector((state: RootState) => state.appReducer.commonComponents);
+  const styles = getStyles();
   const { productsList } = useProducts();
   const [products, setProducts] = useState<Product[]>([]);
   const search = route?.params?.values?.search;
@@ -39,7 +36,7 @@ export const ProductList = ({ navigation, route }: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
-        <StyledText color="white" variant="h4" style={styles.sectionTitle} children="Products" />
+        <StyledText color="white" variant="h4" children="Products" />
         <StyledText
           color="white"
           variant="h2"
@@ -67,21 +64,22 @@ export const ProductList = ({ navigation, route }: any) => {
         </Formik>
       </View>
       <View style={styles.listWrapper}>
-        <ScrollView contentContainerStyle={styles.list}>
-          {!!showSpinner && (
-            <>
-              {products?.length > 0 ? (
-                products.map((product, index) => (
-                  <ProductCardItem key={index} product={product} navigation={navigation} />
-                ))
-              ) : (
-                <StyledText variant="h4" style={{ paddingLeft: 10 }}>
-                  No products available
-                </StyledText>
-              )}
-            </>
+        <FlatList
+          data={products}
+          contentContainerStyle={styles.list}
+          numColumns={2}
+          renderItem={({ item, index }) => (
+            <ProductCardItem key={index} product={item} navigation={navigation} />
           )}
-        </ScrollView>
+          ListEmptyComponent={
+            <StyledText variant="h4" style={{ paddingLeft: 10 }}>
+              No products available
+            </StyledText>
+          }
+          columnWrapperStyle={{
+            gap: width > 484 ? 15 : 15 / (484 / width),
+          }}
+        />
       </View>
     </View>
   );
