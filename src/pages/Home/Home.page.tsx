@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { useQuery } from '@tanstack/react-query';
 import { RootState } from '../../redux';
-import { Banner, FormikTextInput, StyledText } from '../../components';
+import { Banner, FormikTextInput, Loader, StyledText } from '../../components';
 import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
@@ -13,12 +13,13 @@ import { apiDispatch } from '../../service/api.middleware';
 import { getProducts } from '../../service/api.service';
 import { Product } from '../../types';
 import { getStyles } from './HomePage.styles';
+import { Skeleton } from '../../components/Skeleton/Skeleton.component';
 
 export const Home = ({ navigation }: any) => {
   const styles = getStyles();
   const { firstname } = useSelector((state: RootState) => state.appReducer.user);
 
-  const { data: productsListFetched } = useQuery({
+  const { data: productsListFetched, isLoading } = useQuery({
     queryKey: [queryKeys.product],
     queryFn: () => apiDispatch(getProducts),
   });
@@ -59,20 +60,22 @@ export const Home = ({ navigation }: any) => {
       </View>
       <View style={styles.container}>
         <View style={styles.body}>
-          <FlatList
-            horizontal
-            style={styles.horizontalScroll}
-            showsHorizontalScrollIndicator={false}
-            data={productsList}
-            renderItem={({ item, index }) => (
-              <Banner
-                key={index}
-                product={item}
-                style={styles.sliderItem}
-                navigation={navigation}
-              />
-            )}
-          />
+          <Loader isLoading={isLoading} skeleton={<Skeleton />}>
+            <FlatList
+              horizontal
+              style={styles.horizontalScroll}
+              showsHorizontalScrollIndicator={false}
+              data={productsList}
+              renderItem={({ item, index }) => (
+                <Banner
+                  key={index}
+                  product={item}
+                  style={styles.sliderItem}
+                  navigation={navigation}
+                />
+              )}
+            />
+          </Loader>
 
           <View style={styles.row}>
             <StyledText variant="h4">Featured Products</StyledText>
