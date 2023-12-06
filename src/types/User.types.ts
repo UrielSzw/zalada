@@ -23,3 +23,19 @@ export interface UserData {
   addresses: Address[];
   password: string;
 }
+
+export type FormDataLogin = {
+  username: string;
+  password: string;
+};
+
+export type FormDataRegister = {
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+  postCode: string;
+  region: string;
+  street: string;
+  telephone: string;
+};

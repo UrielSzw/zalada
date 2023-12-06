@@ -3,23 +3,13 @@ import { Formik } from 'formik';
 import { Dimensions, KeyboardAvoidingView, View } from 'react-native';
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
+import { FormDataRegister } from '../../types';
 import { PATHS } from '../../routes/paths';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm.component';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { register } from '../../service/api.service';
 import { apiDispatch } from '../../service/api.middleware';
 import { getStyles } from './Register.styles';
-
-type FormData = {
-  firstName: string;
-  lastName: string;
-  password: string;
-  email: string;
-  postCode: string;
-  region: string;
-  street: string;
-  telephone: string;
-};
 
 type BodyType = {
   customer: {
@@ -96,7 +86,7 @@ export const Register = ({ navigation }: any) => {
     onSuccess: () => navigation.navigate(PATHS.LOGIN, { success: true }),
   });
 
-  const handleRegister = (formData: FormData) => {
+  const handleRegister = (formData: FormDataRegister) => {
     const body = {
       customer: {
         email: formData.email,

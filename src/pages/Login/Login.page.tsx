@@ -9,7 +9,7 @@ import { LoginForm } from '../../components';
 import { PATHS } from '../../routes/paths';
 import { apiDispatch } from '../../service/api.middleware';
 import ConfirmModal from '../../components/UI/Modal/ConfirmModal.component';
-import { FormData } from '../../utils/commonLogin';
+import { FormDataLogin } from '../../types';
 import { login } from '../../service/api.service';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { setUserData } from '../../redux/user.slice';
@@ -26,13 +26,13 @@ export const loginValidationSchena = yup.object().shape({
   password: yup.string().min(5, 'Too short!').max(30, 'Too long!').required('Password is required'),
 });
 
-const initialValues: FormData = {
+const initialValues: FormDataLogin = {
   username: '',
   password: '',
 };
 
 interface BodyType {
-  body: FormData;
+  body: FormDataLogin;
 }
 
 export const Login = ({ navigation, route }: any) => {
@@ -59,7 +59,7 @@ export const Login = ({ navigation, route }: any) => {
     }
   };
 
-  const handleOnSubmitLogin = (values: FormData) => {
+  const handleOnSubmitLogin = (values: FormDataLogin) => {
     mutate({ body: values });
   };
 
