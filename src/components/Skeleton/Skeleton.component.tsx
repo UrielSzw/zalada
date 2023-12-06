@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
 
 export const Skeleton = () => {
@@ -25,12 +25,7 @@ export const Skeleton = () => {
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.shimmer,
-          { marginLeft: interpolateShimmer }, // Usar marginLeft en lugar de translateX
-        ]}
-      />
+      <Animated.View style={[styles.shimmer, { marginLeft: interpolateShimmer }]} />
     </View>
   );
 };
@@ -39,15 +34,15 @@ const styles = StyleSheet.create({
   container: {
     width: 370,
     height: 150,
-    backgroundColor: '#E4E3E3', // Color del esqueleto
+    backgroundColor: '#E4E3E3',
     borderRadius: 5,
     overflow: 'hidden',
     marginVertical: 10,
     marginLeft: 20,
   },
   shimmer: {
-    backgroundColor: 'rgba(237, 237, 237, 0.2)', // Color del brillo
-    width: '50%', // Ancho del brillo
+    backgroundColor: 'rgba(237, 237, 237, 0.2)',
+    width: '50%',
     height: '100%',
   },
 });
