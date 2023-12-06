@@ -1,4 +1,6 @@
 import React from 'react';
+import 'react-native-reanimated';
+import 'react-native-gesture-handler';
 import { SafeAreaView, StatusBar } from 'react-native';
 import Routes from './src/routes/routes';
 import { theme } from './src/theme';
