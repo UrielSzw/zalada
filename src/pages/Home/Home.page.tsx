@@ -4,7 +4,14 @@ import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { useQuery } from '@tanstack/react-query';
 import { RootState } from '../../redux';
-import { Banner, FormikTextInput, Loader, StyledText } from '../../components';
+import {
+  Banner,
+  BannerSkeleton,
+  FormikTextInput,
+  Loader,
+  ProductCardItemSkeleton,
+  StyledText,
+} from '../../components';
 import { PATHS } from '../../routes/paths';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
@@ -13,7 +20,6 @@ import { apiDispatch } from '../../service/api.middleware';
 import { getProducts } from '../../service/api.service';
 import { Product } from '../../types';
 import { getStyles } from './HomePage.styles';
-import { Skeleton } from '../../components/Skeleton/Skeleton.component';
 
 export const Home = ({ navigation }: any) => {
   const styles = getStyles();
@@ -60,7 +66,7 @@ export const Home = ({ navigation }: any) => {
       </View>
       <View style={styles.container}>
         <View style={styles.body}>
-          <Loader isLoading={isLoading} skeleton={<Skeleton />}>
+          <Loader isLoading={isLoading} skeleton={<BannerSkeleton />}>
             <FlatList
               horizontal
               style={styles.horizontalScroll}
@@ -76,7 +82,6 @@ export const Home = ({ navigation }: any) => {
               )}
             />
           </Loader>
-
           <View style={styles.row}>
             <StyledText variant="h4">Featured Products</StyledText>
             <TouchableOpacity>
@@ -85,17 +90,19 @@ export const Home = ({ navigation }: any) => {
               </StyledText>
             </TouchableOpacity>
           </View>
-          <FlatList
-            horizontal
-            style={styles.horizontalScroll}
-            showsHorizontalScrollIndicator={false}
-            data={productsList?.reverse()}
-            renderItem={({ item, index }) => (
-              <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
-                <ProductCardItem product={item} navigation={navigation} />
-              </View>
-            )}
-          />
+          <Loader isLoading={isLoading} skeleton={<ProductCardItemSkeleton.home />}>
+            <FlatList
+              horizontal
+              style={styles.horizontalScroll}
+              showsHorizontalScrollIndicator={false}
+              data={productsList?.reverse()}
+              renderItem={({ item, index }) => (
+                <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
+                  <ProductCardItem product={item} navigation={navigation} />
+                </View>
+              )}
+            />
+          </Loader>
         </View>
       </View>
     </>

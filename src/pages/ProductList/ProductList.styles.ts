@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
-import { useStyles } from '../../utils';
+import { STYLES } from '../../utils';
 
-export const getStyles = () => {
-  const { setWidth } = useStyles();
-  return StyleSheet.create({
+export const getStyles = () =>
+  StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: theme.colors.white,
@@ -21,9 +20,8 @@ export const getStyles = () => {
     },
     list: {
       justifyContent: 'space-between',
-      gap: setWidth(15),
-      paddingHorizontal: setWidth(15),
+      gap: STYLES.calcWidth(15),
+      paddingHorizontal: STYLES.calcWidth(15),
       paddingVertical: 24,
     },
   });
-};

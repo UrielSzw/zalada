@@ -1,7 +1,21 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Animated, Easing } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Animated,
+  Easing,
+  DimensionValue,
+  AnimatableNumericValue,
+} from 'react-native';
 
-export const Skeleton = () => {
+type Props = {
+  width: DimensionValue;
+  height: DimensionValue;
+  borderRadius: AnimatableNumericValue;
+};
+
+export const Skeleton: React.FC<Props> = ({ width, height, borderRadius }) => {
+  const styles = getStyles({ width, height, borderRadius });
   const shimmerAnimation = new Animated.Value(0);
 
   const startShimmerAnimation = () => {
@@ -14,35 +28,37 @@ export const Skeleton = () => {
     }).start(() => startShimmerAnimation());
   };
 
+  startShimmerAnimation();
   useEffect(() => {
     startShimmerAnimation();
   }, []);
 
   const interpolateShimmer = shimmerAnimation.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [-100, 200, -100],
+    inputRange: [0, 1, 1.5],
+    outputRange: [-250, 200, 0],
   });
-
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <Animated.View style={[styles.shimmer, { marginLeft: interpolateShimmer }]} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    width: 370,
-    height: 150,
-    backgroundColor: '#E4E3E3',
-    borderRadius: 5,
-    overflow: 'hidden',
-    marginVertical: 10,
-    marginLeft: 20,
-  },
-  shimmer: {
-    backgroundColor: 'rgba(237, 237, 237, 0.2)',
-    width: '50%',
-    height: '100%',
-  },
-});
+const getStyles = ({ width, height, borderRadius }: Props) =>
+  StyleSheet.create({
+    container: {
+      width,
+      height,
+      backgroundColor: '#ECEBEB',
+      borderRadius,
+      overflow: 'hidden',
+      marginVertical: 10,
+      marginLeft: 20,
+    },
+    shimmer: {
+      backgroundColor: 'rgba(240, 240, 240, 0.45)',
+      width: '300%',
+      height: '80%',
+      transform: [{ rotate: '-60deg' }],
+    },
+  });
