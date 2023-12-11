@@ -4,8 +4,8 @@ import { StyledText } from '../';
 import { theme } from '../../theme';
 import { PATHS } from '../../routes/paths';
 import { DipCoreLogo } from '../../assets';
-import { getStyles } from './LoginForm.styles';
 import { FormInput } from '../FormControls/FormInput.component';
+import { getStyles } from './LoginForm.styles';
 
 type Props = {
   handleSubmit: any;

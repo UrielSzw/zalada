@@ -7,7 +7,6 @@ import { styles } from './StyledInput.styles';
 export interface StyledTextInputProp extends TextInputProps {
   error?: any;
   field?: any;
-  value?: string;
   label?: string;
   rightIcon?: ReactNode;
   leftIcon?: ReactNode;
@@ -31,7 +30,7 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
       )}
       <View style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}>
         <TextInput
-          value={field?.value || value}
+          value={field?.value}
           onChangeText={field?.onChange}
           placeholderTextColor={theme.colors.gray30}
           {...rest}
