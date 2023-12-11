@@ -1,8 +1,6 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
-
-const { width } = Dimensions.get('window');
-
+import { STYLES } from '../../utils';
 export const getStyles = () =>
   StyleSheet.create({
     container: {
@@ -22,7 +20,7 @@ export const getStyles = () =>
     },
     sliderItem: {
       marginRight: 20,
-      width: width * 0.7,
+      width: STYLES.calcWidthPerc(70),
     },
     row: {
       flexDirection: 'row',

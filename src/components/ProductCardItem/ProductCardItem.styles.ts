@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
-import { useStyles } from '../../utils';
+import { STYLES } from '../../utils';
 
-export const getStyles = () => {
-  const { setHeight, setWidthPercentage } = useStyles();
-
-  return StyleSheet.create({
+export const getStyles = () =>
+  StyleSheet.create({
     container: {
-      width: setWidthPercentage(45),
+      width: STYLES.calcWidthPerc(45),
       backgroundColor: theme.colors.white,
       paddingHorizontal: 10,
       paddingVertical: 15,
@@ -15,7 +13,7 @@ export const getStyles = () => {
       elevation: 0,
     },
     imageWrapper: {
-      height: setHeight(125),
+      height: STYLES.calcHeight(125),
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -23,8 +21,8 @@ export const getStyles = () => {
     },
     image: {
       resizeMode: 'contain',
-      width: setWidthPercentage(35),
-      height: setHeight(125),
+      width: STYLES.calcWidthPerc(35),
+      height: STYLES.calcHeight(125),
     },
     productTitle: {
       height: theme.fontSize.md * 2,
@@ -48,4 +46,3 @@ export const getStyles = () => {
       alignItems: 'flex-end',
     },
   });
-};

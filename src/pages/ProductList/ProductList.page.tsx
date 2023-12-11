@@ -1,25 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
-import { FormikTextInput, StyledText } from '../../components';
+import { useQuery } from '@tanstack/react-query';
+import { FormikTextInput, Loader, ProductCardItemSkeleton, StyledText } from '../../components';
 import ProductCardItem from '../../components/ProductCardItem/ProductCardItem.component';
 import SearchIcon from '../../assets/base/icons/search_icon';
 import { Product } from '../../types/Product.types';
-import { useStyles } from '../../utils';
 import { queryKeys } from '../../common/constants/queryKeys';
 import { apiDispatch } from '../../service/api.middleware';
 import { getProducts } from '../../service/api.service';
-import { useQuery } from '@tanstack/react-query';
+import { STYLES } from '../../utils';
 import { getStyles } from './ProductList.styles';
 
 export const ProductList = ({ navigation, route }: any) => {
-  const { setWidth } = useStyles();
   const styles = getStyles();
   const [products, setProducts] = useState<Product[]>([]);
   const search = route?.params?.values?.search;
   const isFirstLoad = useRef<boolean>(true);
 
-  const { data: featuredProductsFetched } = useQuery({
+  const {
+    data: featuredProductsFetched,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [queryKeys.product],
     queryFn: () => apiDispatch(getProducts),
   });
@@ -77,22 +80,28 @@ export const ProductList = ({ navigation, route }: any) => {
         </Formik>
       </View>
       <View style={styles.listWrapper}>
-        <FlatList
-          data={products}
-          contentContainerStyle={styles.list}
-          numColumns={2}
-          renderItem={({ item, index }) => (
-            <ProductCardItem key={index} product={item} navigation={navigation} />
-          )}
-          ListEmptyComponent={
-            <StyledText variant="h4" style={{ paddingLeft: 10 }}>
-              No products available
-            </StyledText>
-          }
-          columnWrapperStyle={{
-            gap: setWidth(15),
-          }}
-        />
+        <Loader isLoading={isFetching || isLoading} skeleton={<ProductCardItemSkeleton.list />}>
+          <FlatList
+            data={products}
+            contentContainerStyle={styles.list}
+            numColumns={2}
+            renderItem={({ item, index }) => (
+              <ProductCardItem key={index} product={item} navigation={navigation} />
+            )}
+            ListEmptyComponent={
+              <>
+                {!isFetching && (
+                  <StyledText variant="h4" style={{ paddingLeft: 10 }}>
+                    No products available
+                  </StyledText>
+                )}
+              </>
+            }
+            columnWrapperStyle={{
+              gap: STYLES.calcWidth(15),
+            }}
+          />
+        </Loader>
       </View>
     </View>
   );

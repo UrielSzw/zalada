@@ -32,7 +32,6 @@ export const Banner: React.FC<Props> = ({ product, small, navigation, style }) =
               navigation.navigate(PATHS.PDP, { productId: product.productId });
             }}
             text="Shop Now"
-            bannerIcon
           />
         </View>
         <Image
