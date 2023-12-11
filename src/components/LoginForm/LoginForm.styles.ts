@@ -27,6 +27,7 @@ export const getStyles = () => {
       flexWrap: 'wrap',
       justifyContent: 'center',
       marginBottom: 40,
+      marginTop: 20,
     },
     buttonsWrapper: {
       paddingHorizontal: 24,
@@ -34,7 +35,6 @@ export const getStyles = () => {
       position: 'absolute',
       width: '100%',
     },
-    dipCore: {},
     logInBtn: {
       backgroundColor: theme.colors.default,
       height: 50,
@@ -42,6 +42,10 @@ export const getStyles = () => {
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: theme.borderRadius.regular,
+    },
+    input: {
+      marginTop: 20,
+      marginBottom: 5,
     },
   });
 };

@@ -8,7 +8,8 @@ export type Colors =
   | 'white'
   | 'error'
   | 'green'
-  | 'yellow';
+  | 'yellow'
+  | 'black';
 
 export type FontWeight = 'default' | 'bold' | 'thin';
 
