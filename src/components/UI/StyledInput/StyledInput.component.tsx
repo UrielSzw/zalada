@@ -33,6 +33,7 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
           value={field?.value}
           onChangeText={field?.onChange}
           placeholderTextColor={theme.colors.gray30}
+          style={{ flex: 1 }}
           {...rest}
         />
         {rightIcon && rightIcon}

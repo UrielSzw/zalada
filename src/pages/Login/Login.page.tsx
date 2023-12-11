@@ -47,7 +47,7 @@ export const Login = ({ navigation, route }: any) => {
     }
   };
 
-  const handleOnSubmitLogin = (values: FormDataLogin) => {
+  const handleOnSubmitLogin = (values: any) => {
     mutate({ body: values });
   };
 
@@ -60,11 +60,10 @@ export const Login = ({ navigation, route }: any) => {
       <KeyboardAvoidingView behavior="height" style={styles.form} keyboardVerticalOffset={-200}>
         <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.form}>
           <LoginForm
-            handleSubmit={handleSubmit}
+            handleSubmit={handleSubmit(handleOnSubmitLogin)}
             control={control}
             errors={errors}
             navigation={navigation}
-            handleOnSubmitLogin={handleOnSubmitLogin}
           />
         </ScrollView>
       </KeyboardAvoidingView>

@@ -9,19 +9,12 @@ import { getStyles } from './LoginForm.styles';
 
 type Props = {
   handleSubmit: any;
-  handleOnSubmitLogin: any;
   errors: any;
   control: any;
   navigation: any;
 };
 
-export const LoginForm: React.FC<Props> = ({
-  handleSubmit,
-  handleOnSubmitLogin,
-  errors,
-  control,
-  navigation,
-}) => {
+export const LoginForm: React.FC<Props> = ({ handleSubmit, errors, control, navigation }) => {
   const styles = getStyles();
 
   return (
@@ -39,8 +32,8 @@ export const LoginForm: React.FC<Props> = ({
       </View>
       <View style={styles.buttonsWrapper}>
         <FormInput
-          control={control}
           name="username"
+          control={control}
           errors={errors}
           rules={{
             required: 'Email is required',
@@ -55,10 +48,10 @@ export const LoginForm: React.FC<Props> = ({
           keyboardType="email-address"
         />
         <FormInput
-          control={control}
-          errors={errors}
           name="password"
           placeholder="Password"
+          control={control}
+          errors={errors}
           rules={{
             required: 'Password is required',
           }}
@@ -78,7 +71,7 @@ export const LoginForm: React.FC<Props> = ({
             </StyledText>
           </TouchableOpacity>
         </View>
-        <Pressable onPress={handleSubmit(handleOnSubmitLogin)} style={styles.logInBtn}>
+        <Pressable onPress={handleSubmit} style={styles.logInBtn}>
           <StyledText color="white" weight="bold">
             Log In
           </StyledText>
