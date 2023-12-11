@@ -43,10 +43,10 @@ export const LoginForm: React.FC<Props> = ({
           control={control}
           name="username"
           rules={{
-            required: 'El correo electrónico es obligatorio',
+            required: 'Email is required',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Correo electrónico inválido',
+              message: 'Email must be a valid format',
             },
           }}
           render={({ field }) => (
@@ -64,7 +64,7 @@ export const LoginForm: React.FC<Props> = ({
           control={control}
           name="password"
           rules={{
-            required: 'La contraseña es obligatoria',
+            required: 'Password is required',
           }}
           render={({ field }) => (
             <StyledInput
