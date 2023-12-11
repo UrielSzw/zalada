@@ -27,6 +27,7 @@ export const getStyles = () => {
       flexWrap: 'wrap',
       justifyContent: 'center',
       marginBottom: 40,
+      marginTop: 20,
     },
     buttonsWrapper: {
       paddingHorizontal: 24,
@@ -43,7 +44,8 @@ export const getStyles = () => {
       borderRadius: theme.borderRadius.regular,
     },
     input: {
-      marginVertical: 20,
+      marginTop: 20,
+      marginBottom: 5,
     },
   });
 };

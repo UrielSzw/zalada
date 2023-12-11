@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TextInput, TextInputProps, View } from 'react-native';
-import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 import { StyledText } from '../StyledText/StyledText';
 import { theme } from '../../../theme';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { styles } from './StyledInput.styles';
 
 interface StyledTextInputProp extends TextInputProps {
-  error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+  error?: any;
   field: any;
   label?: string;
+  rightIcon?: ReactNode;
+  leftIcon?: ReactNode;
 }
 
 export const StyledInput: React.FC<StyledTextInputProp> = ({
@@ -20,6 +20,7 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
   style,
   error,
   keyboardType = 'default',
+  rightIcon,
 }) => {
   return (
     <View>
@@ -28,18 +29,20 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
           {label}
         </StyledText>
       )}
-      <TextInput
-        keyboardType={keyboardType}
-        secureTextEntry={secureTextEntry}
-        style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}
-        placeholder={placeholder}
-        value={field?.value}
-        onChangeText={field?.onChange}
-        placeholderTextColor={theme.colors.gray30}
-      />
+      <View style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}>
+        <TextInput
+          keyboardType={keyboardType}
+          secureTextEntry={secureTextEntry}
+          placeholder={placeholder}
+          value={field?.value}
+          onChangeText={field?.onChange}
+          placeholderTextColor={theme.colors.gray30}
+        />
+        {rightIcon && rightIcon}
+      </View>
       {error && (
-        <StyledText size="sm" style={{ color: theme.colors.error }}>
-          {error.toString()}
+        <StyledText size="default" style={{ color: theme.colors.error }}>
+          {error}
         </StyledText>
       )}
     </View>

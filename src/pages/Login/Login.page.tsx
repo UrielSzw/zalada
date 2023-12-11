@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Formik } from 'formik';
 import { Dimensions, KeyboardAvoidingView, ScrollView, View } from 'react-native';
-import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
 import { AxiosResponse } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,23 +14,6 @@ import { queryKeys } from '../../common/constants/queryKeys';
 import { setUserData } from '../../redux/user.slice';
 import { useAppDispatch } from '../../redux/hook';
 import { getStyles } from './Login.styles';
-import { Controller, useForm } from 'react-hook-form';
-import { StyledInput } from '../../components/UI/StyledInput/StyledInput.component';
-
-export const loginValidationSchena = yup.object().shape({
-  username: yup
-    .string()
-    .email()
-    .min(5, 'Too short!')
-    .max(320, 'Too long!')
-    .required('Email is required'),
-  password: yup.string().min(5, 'Too short!').max(30, 'Too long!').required('Password is required'),
-});
-
-const initialValues: FormDataLogin = {
-  username: '',
-  password: '',
-};
 
 interface BodyType {
   body: FormDataLogin;
@@ -44,7 +26,6 @@ export const Login = ({ navigation, route }: any) => {
     formState: { errors },
   } = useForm();
   const dispatch = useAppDispatch();
-  const [triggerValidation, settriggerValidation] = useState(false);
   const [showSuccesModal, setshowSuccessModal] = useState(false);
   const { height } = Dimensions.get('window');
   const styles = getStyles({ height });
@@ -82,7 +63,6 @@ export const Login = ({ navigation, route }: any) => {
             handleSubmit={handleSubmit}
             control={control}
             errors={errors}
-            settriggerValidation={settriggerValidation}
             navigation={navigation}
             handleOnSubmitLogin={handleOnSubmitLogin}
           />

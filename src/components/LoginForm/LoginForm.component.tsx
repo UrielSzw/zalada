@@ -1,20 +1,18 @@
 import React from 'react';
 import { View, TouchableOpacity, Pressable } from 'react-native';
-import { Button, FormikTextInput, StyledText } from '../';
+import { Controller } from 'react-hook-form';
+import { StyledText } from '../';
 import { theme } from '../../theme';
 import { PATHS } from '../../routes/paths';
-import { getStyles } from './LoginForm.styles';
 import { DipCoreLogo } from '../../assets';
-import { Controller, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
 import { StyledInput } from '../UI/StyledInput/StyledInput.component';
-import { FormDataLogin } from '../../types';
+import { getStyles } from './LoginForm.styles';
 
 type Props = {
-  handleSubmit: UseFormHandleSubmit<FieldValues, undefined>;
+  handleSubmit: any;
   handleOnSubmitLogin: any;
   errors: any;
   control: any;
-  settriggerValidation: (flag: boolean) => void;
   navigation: any;
 };
 
@@ -23,7 +21,6 @@ export const LoginForm: React.FC<Props> = ({
   handleOnSubmitLogin,
   errors,
   control,
-  settriggerValidation,
   navigation,
 }) => {
   const styles = getStyles();
@@ -92,7 +89,7 @@ export const LoginForm: React.FC<Props> = ({
             </StyledText>
           </TouchableOpacity>
         </View>
-        <Pressable onPress={() => handleSubmit(handleOnSubmitLogin)} style={styles.logInBtn}>
+        <Pressable onPress={handleSubmit(handleOnSubmitLogin)} style={styles.logInBtn}>
           <StyledText color="white" weight="bold">
             Log In
           </StyledText>
