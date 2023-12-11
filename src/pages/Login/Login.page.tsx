@@ -15,6 +15,8 @@ import { queryKeys } from '../../common/constants/queryKeys';
 import { setUserData } from '../../redux/user.slice';
 import { useAppDispatch } from '../../redux/hook';
 import { getStyles } from './Login.styles';
+import { Controller, useForm } from 'react-hook-form';
+import { StyledInput } from '../../components/UI/StyledInput/StyledInput.component';
 
 export const loginValidationSchena = yup.object().shape({
   username: yup
@@ -36,6 +38,11 @@ interface BodyType {
 }
 
 export const Login = ({ navigation, route }: any) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useAppDispatch();
   const [triggerValidation, settriggerValidation] = useState(false);
   const [showSuccesModal, setshowSuccessModal] = useState(false);
@@ -69,32 +76,18 @@ export const Login = ({ navigation, route }: any) => {
 
   return (
     <View style={styles.loginWrapper}>
-      <Formik
-        validationSchema={loginValidationSchena}
-        initialValues={initialValues}
-        onSubmit={handleOnSubmitLogin}
-        validateOnChange={triggerValidation}
-        validateOnBlur={false}
-      >
-        {({ handleSubmit, isValid }) => {
-          return (
-            <KeyboardAvoidingView
-              behavior="height"
-              style={styles.form}
-              keyboardVerticalOffset={-200}
-            >
-              <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.form}>
-                <LoginForm
-                  handleSubmit={handleSubmit}
-                  isValid={isValid}
-                  settriggerValidation={settriggerValidation}
-                  navigation={navigation}
-                />
-              </ScrollView>
-            </KeyboardAvoidingView>
-          );
-        }}
-      </Formik>
+      <KeyboardAvoidingView behavior="height" style={styles.form} keyboardVerticalOffset={-200}>
+        <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.form}>
+          <LoginForm
+            handleSubmit={handleSubmit}
+            control={control}
+            errors={errors}
+            settriggerValidation={settriggerValidation}
+            navigation={navigation}
+            handleOnSubmitLogin={handleOnSubmitLogin}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
       <ConfirmModal
         show={showSuccesModal}
         onPressPositive={() => setshowSuccessModal(false)}

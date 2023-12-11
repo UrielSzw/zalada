@@ -34,7 +34,6 @@ export const getStyles = () => {
       position: 'absolute',
       width: '100%',
     },
-    dipCore: {},
     logInBtn: {
       backgroundColor: theme.colors.default,
       height: 50,
@@ -42,6 +41,9 @@ export const getStyles = () => {
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: theme.borderRadius.regular,
+    },
+    input: {
+      marginVertical: 20,
     },
   });
 };

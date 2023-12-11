@@ -14,6 +14,7 @@ interface Theme {
     white: string;
     yellow: string;
     green: string;
+    black: string;
   };
   fontSize: {
     xxl: number;
@@ -51,6 +52,7 @@ export const theme: Theme = {
     white: '#FFFFFF',
     yellow: '#FFC120',
     green: '#0ACF83',
+    black: '#000000',
   },
   fontSize: {
     xxl: 28,
