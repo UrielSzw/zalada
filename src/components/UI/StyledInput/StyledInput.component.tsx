@@ -4,9 +4,10 @@ import { StyledText } from '../StyledText/StyledText';
 import { theme } from '../../../theme';
 import { styles } from './StyledInput.styles';
 
-interface StyledTextInputProp extends TextInputProps {
+export interface StyledTextInputProp extends TextInputProps {
   error?: any;
-  field: any;
+  field?: any;
+  value?: string;
   label?: string;
   rightIcon?: ReactNode;
   leftIcon?: ReactNode;
@@ -14,13 +15,12 @@ interface StyledTextInputProp extends TextInputProps {
 
 export const StyledInput: React.FC<StyledTextInputProp> = ({
   field,
+  value,
   label,
-  placeholder,
-  secureTextEntry,
   style,
   error,
-  keyboardType = 'default',
   rightIcon,
+  ...rest
 }) => {
   return (
     <View>
@@ -31,12 +31,10 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
       )}
       <View style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}>
         <TextInput
-          keyboardType={keyboardType}
-          secureTextEntry={secureTextEntry}
-          placeholder={placeholder}
-          value={field?.value}
+          value={field?.value || value}
           onChangeText={field?.onChange}
           placeholderTextColor={theme.colors.gray30}
+          {...rest}
         />
         {rightIcon && rightIcon}
       </View>

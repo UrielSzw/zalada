@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, TouchableOpacity, Pressable } from 'react-native';
-import { Controller } from 'react-hook-form';
 import { StyledText } from '../';
 import { theme } from '../../theme';
 import { PATHS } from '../../routes/paths';
 import { DipCoreLogo } from '../../assets';
-import { StyledInput } from '../UI/StyledInput/StyledInput.component';
 import { getStyles } from './LoginForm.styles';
+import { FormInput } from '../FormControls/FormInput.component';
 
 type Props = {
   handleSubmit: any;
@@ -39,9 +38,10 @@ export const LoginForm: React.FC<Props> = ({
         </StyledText>
       </View>
       <View style={styles.buttonsWrapper}>
-        <Controller
+        <FormInput
           control={control}
           name="username"
+          errors={errors}
           rules={{
             required: 'Email is required',
             pattern: {
@@ -49,32 +49,21 @@ export const LoginForm: React.FC<Props> = ({
               message: 'Email must be a valid format',
             },
           }}
-          render={({ field }) => (
-            <StyledInput
-              field={field}
-              placeholder="Email"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              style={styles.input}
-              error={errors.username?.message}
-            />
-          )}
+          style={styles.input}
+          placeholder="Email"
+          autoCapitalize="none"
+          keyboardType="email-address"
         />
-        <Controller
+        <FormInput
           control={control}
+          errors={errors}
           name="password"
+          placeholder="Password"
           rules={{
             required: 'Password is required',
           }}
-          render={({ field }) => (
-            <StyledInput
-              field={field}
-              placeholder="Password"
-              secureTextEntry
-              style={styles.input}
-              error={errors.password?.message}
-            />
-          )}
+          style={styles.input}
+          secureTextEntry
         />
         <View style={styles.signupLink}>
           <StyledText style={{ marginRight: 5 }} color="white">
