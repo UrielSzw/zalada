@@ -68,37 +68,25 @@ const Header: React.FC<any> = ({ navigation, route, options }) => {
     switch (title) {
       case PATHS.CART:
         return {
-          center: (
-            <StyledText color="white" variant="h4">
-              Shopping Cart
-            </StyledText>
-          ),
+          center: <StyledText color="white" variant="h4" children="Shopping Cart" />,
           rightIcon: <TrashBtn />,
         };
       case PATHS.CHECKOUT:
         return {
-          center: (
-            <StyledText color="white" variant="h4">
-              Checkout Page
-            </StyledText>
-          ),
+          center: <StyledText color="white" variant="h4" children="Checkout Page" />,
           rightIcon: <TrashBtn />,
+        };
+      case PATHS.ADD_CREDIT_CARD:
+        return {
+          center: <StyledText color="white" variant="h4" children="Add Credit Card" />,
+        };
+      case PATHS.PROFILE:
+        return {
+          center: <StyledText color="white" variant="h4" children="Profile" />,
         };
       case PATHS.PDP:
       case PATHS.PLP:
       case PATHS.HOME:
-        return {
-          center: <LogoContainer />,
-          rightIcon: <CartBtn />,
-        };
-      case PATHS.PROFILE:
-        return {
-          center: (
-            <StyledText color="white" variant="h4">
-              Profile
-            </StyledText>
-          ),
-        };
       default:
         return {};
     }

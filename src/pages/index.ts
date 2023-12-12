@@ -6,3 +6,4 @@ export * from './ProductDetail/ProductDetail.page';
 export * from './ProductList/ProductList.page';
 export * from './Profile/Profile.page';
 export * from './Register/Register.page';
+export * from './AddCreditCard/AddCreditCard.page';

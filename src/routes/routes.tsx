@@ -10,6 +10,7 @@ import {
   ProductList,
   Profile,
   Register,
+  AddCreditCard,
 } from '../pages';
 import { PATHS } from './paths';
 import Header from '../components/Header/Header';
@@ -35,6 +36,7 @@ const Routes = (): JSX.Element => {
         <Stack.Screen name={PATHS.PLP} component={ProductList} />
         <Stack.Screen name={PATHS.PROFILE} component={Profile} />
         <Stack.Screen name={PATHS.REGISTER} component={Register} options={{ headerShown: false }} />
+        <Stack.Screen name={PATHS.ADD_CREDIT_CARD} component={AddCreditCard} />
       </Stack.Navigator>
       <Spinner />
       <StatusErrorModal />

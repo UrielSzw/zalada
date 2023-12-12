@@ -8,4 +8,5 @@ export const PATHS = {
   PLP: 'ProductList',
   PROFILE: 'Profile',
   REGISTER: 'Register',
+  ADD_CREDIT_CARD: 'Add Credit Cart',
 };
