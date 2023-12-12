@@ -37,5 +37,8 @@ export const getStyles = () => {
       alignItems: 'center',
       borderRadius: theme.borderRadius.regular,
     },
+    spacer: {
+      marginBottom: 2,
+    },
   });
 };

@@ -28,21 +28,23 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
           {label}
         </StyledText>
       )}
-      <View style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}>
-        <TextInput
-          value={field?.value}
-          onChangeText={field?.onChange}
-          placeholderTextColor={theme.colors.gray30}
-          style={{ flex: 1 }}
-          {...rest}
-        />
-        {rightIcon && rightIcon}
+      <View style={{ marginBottom: 10 }}>
+        <View style={[styles.input, style, { borderColor: error ? 'red' : '#8696BB' }]}>
+          <TextInput
+            value={field?.value}
+            onChangeText={field?.onChange}
+            placeholderTextColor={theme.colors.gray30}
+            style={{ flex: 1 }}
+            {...rest}
+          />
+          {rightIcon && rightIcon}
+        </View>
+        {error && (
+          <StyledText size="default" style={{ color: theme.colors.error }}>
+            {error}
+          </StyledText>
+        )}
       </View>
-      {error && (
-        <StyledText size="default" style={{ color: theme.colors.error }}>
-          {error}
-        </StyledText>
-      )}
     </View>
   );
 };

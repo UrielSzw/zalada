@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Formik } from 'formik';
+import React from 'react';
 import { Dimensions, KeyboardAvoidingView, View } from 'react-native';
-import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
-import { FormDataRegister } from '../../types';
+import { useForm } from 'react-hook-form';
 import { PATHS } from '../../routes/paths';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm.component';
 import { queryKeys } from '../../common/constants/queryKeys';
@@ -36,45 +34,12 @@ type BodyType = {
   password: string;
 };
 
-export const registerValidationSchema = yup.object().shape({
-  firstName: yup
-    .string()
-    .min(5, 'Too short!')
-    .max(360, 'Too long!')
-    .required('First Name is required'),
-  lastName: yup
-    .string()
-    .min(5, 'Too short!')
-    .max(360, 'Too long!')
-    .required('Last Name is required'),
-  email: yup.string().email().required('E-mail is required!'),
-  password: yup
-    .string()
-    .min(3, 'Too short!')
-    .max(360, 'Too long!')
-    .required('Password is required'),
-  region: yup.string().min(5, 'Too short!').max(360, 'Too long!').required('City is required'),
-  postCode: yup.string().max(360, 'Too long!').required('Postal Code is required'),
-  street: yup.string().max(360, 'Too long!').required('Postal Code is required'),
-  telephone: yup
-    .number()
-    .min(10, 'Telephone needs at least 10 characters')
-    .required('Telephone is required'),
-});
-
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  region: '',
-  postCode: '',
-  street: '',
-  telephone: '',
-};
-
 export const Register = ({ navigation }: any) => {
-  const [triggerValidation, settriggerValidation] = useState(true);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { height } = Dimensions.get('window');
   const styles = getStyles({ height });
@@ -86,8 +51,8 @@ export const Register = ({ navigation }: any) => {
     onSuccess: () => navigation.navigate(PATHS.LOGIN, { success: true }),
   });
 
-  const handleRegister = (formData: FormDataRegister) => {
-    const body = {
+  const handleOnSubmitRegister = (formData: any) => {
+    const body: BodyType = {
       customer: {
         email: formData.email,
         firstname: formData.firstName,
@@ -113,36 +78,19 @@ export const Register = ({ navigation }: any) => {
       },
       password: formData.password,
     };
-
     mutate(body);
   };
 
   return (
     <View style={styles.registerWrapper}>
-      <Formik
-        validationSchema={registerValidationSchema}
-        initialValues={initialValues}
-        onSubmit={handleRegister}
-        validateOnChange={triggerValidation}
-        validateOnBlur={false}
-      >
-        {({ handleSubmit, isValid }) => {
-          return (
-            <KeyboardAvoidingView
-              behavior="padding"
-              style={styles.form}
-              keyboardVerticalOffset={-220}
-            >
-              <RegisterForm
-                handleSubmit={handleSubmit}
-                isValid={isValid}
-                settriggerValidation={settriggerValidation}
-                navigation={navigation}
-              />
-            </KeyboardAvoidingView>
-          );
-        }}
-      </Formik>
+      <KeyboardAvoidingView behavior="padding" style={styles.form} keyboardVerticalOffset={-220}>
+        <RegisterForm
+          handleSubmit={handleSubmit(handleOnSubmitRegister)}
+          control={control}
+          errors={errors}
+          navigation={navigation}
+        />
+      </KeyboardAvoidingView>
     </View>
   );
 };
