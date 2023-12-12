@@ -31,7 +31,6 @@ export const getStyles = () =>
       letterSpacing: 0.2,
     },
     bottomContainer: {
-      flex: 1,
       display: 'flex',
       flexDirection: 'row',
       marginTop: 10,

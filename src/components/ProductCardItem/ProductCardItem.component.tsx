@@ -1,18 +1,17 @@
 import React from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import { StyledText } from '../UI/StyledText/StyledText';
 import { MoreVertical, StarFilledIcon } from '../../assets';
 import { Product } from '../../types/Product.types';
 import { PATHS } from '../../routes/paths';
 import { getStyles } from './ProductCardItem.styles';
 
-type Props = {
+interface Props extends TouchableOpacityProps {
   navigation?: any;
   product: Product;
-  customStyles?: any;
-};
+}
 
-const ProductCardItem: React.FC<Props> = ({ product, navigation, customStyles }) => {
+const ProductCardItem: React.FC<Props> = ({ product, navigation, style, ...rest }) => {
   const styles = getStyles();
 
   return (
@@ -21,7 +20,8 @@ const ProductCardItem: React.FC<Props> = ({ product, navigation, customStyles })
         navigation.navigate(PATHS.PDP, { productId: product.productId });
       }}
       activeOpacity={1}
-      style={[styles.container, customStyles]}
+      style={[styles.container, style]}
+      {...rest}
     >
       <View style={styles.imageWrapper}>
         <Image style={styles.image} source={{ uri: product.overview[0] }} />
