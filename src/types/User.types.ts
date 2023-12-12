@@ -39,3 +39,31 @@ export type FormDataRegister = {
   street: string;
   telephone: string;
 };
+
+export type BodyAddAddress = {
+  body: {
+    defaultShipping: boolean;
+    defaultBilling: boolean;
+    firstname: string;
+    lastname: string;
+    region: {
+      regionCode: string;
+      region: string;
+      regionId: string;
+    };
+    postcode: string;
+    street: string[];
+    city: string;
+    telephone: string;
+    countryId: string;
+  };
+};
+
+export type FormAddAddress = {
+  firstname: string;
+  lastname: string;
+  region: string;
+  postcode: string;
+  street: string;
+  telephone: string;
+};

@@ -8,6 +8,7 @@ export * from './UI/Banner/Banner.component';
 export * from './UI/Banner/Banner.skeleton';
 export * from './UI/DropdownModal/DropdownModal.component';
 export * from './LoginForm/LoginForm.component';
+export * from './AddAdressForm/AddAdressForm.component'
 export * from './RegisterForm/RegisterForm.component';
 export * from './Loader/Loader.component';
 export * from './ProductCardItem/ProductCardItem.skeleton';
