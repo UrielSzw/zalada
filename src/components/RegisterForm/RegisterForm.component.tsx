@@ -86,7 +86,7 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
               required: 'City is required',
             }}
             style={styles.spacer}
-            width={'68%'}
+            width={'58%'}
           />
           <FormInput
             name="postCode"
@@ -97,7 +97,7 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
               required: 'Zip Code is required',
             }}
             style={styles.spacer}
-            width={'28%'}
+            width={'38%'}
           />
         </View>
         <FormInput
