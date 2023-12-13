@@ -8,6 +8,5 @@ export const getStyles = (props?: any) =>
     },
     form: {
       minHeight: props?.height && props?.height - 280,
-      paddingTop: 52,
     },
   });

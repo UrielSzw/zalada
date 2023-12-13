@@ -19,7 +19,7 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
   return (
     <ScrollView>
       <View style={styles.titleWrapper}>
-        <StyledText color="white" style={{ fontSize: 51 }}>
+        <StyledText color="white" style={{ fontSize: 51, marginTop: 52 }}>
           Register
         </StyledText>
       </View>
