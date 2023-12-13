@@ -73,11 +73,8 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
         />
         <View
           style={{
-            display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            gap: 20,
-            flex: 1,
           }}
         >
           <FormInput
@@ -88,7 +85,8 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
             rules={{
               required: 'City is required',
             }}
-            style={{ marginBottom: 5, width: STYLES.calcWidthPerc(58) }}
+            style={styles.spacer}
+            width={'68%'}
           />
           <FormInput
             name="postCode"
@@ -98,7 +96,8 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
             rules={{
               required: 'Zip Code is required',
             }}
-            style={{ ...styles.spacer, width: STYLES.calcWidthPerc(28) }}
+            style={styles.spacer}
+            width={'28%'}
           />
         </View>
         <FormInput

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TextInput, TextInputProps, View } from 'react-native';
+import { DimensionValue, TextInput, TextInputProps, View } from 'react-native';
 import { StyledText } from '../StyledText/StyledText';
 import { theme } from '../../../theme';
 import { styles } from './StyledInput.styles';
@@ -10,6 +10,7 @@ export interface StyledTextInputProp extends TextInputProps {
   label?: string;
   rightIcon?: ReactNode;
   leftIcon?: ReactNode;
+  width?: DimensionValue;
 }
 
 export const StyledInput: React.FC<StyledTextInputProp> = ({
@@ -19,10 +20,11 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
   style,
   error,
   rightIcon,
+  width,
   ...rest
 }) => {
   return (
-    <View>
+    <View style={{ width: width }}>
       {label && (
         <StyledText size="default" style={{ color: theme.colors.white }}>
           {label}
@@ -39,11 +41,9 @@ export const StyledInput: React.FC<StyledTextInputProp> = ({
           />
           {rightIcon && rightIcon}
         </View>
-        {error && (
-          <StyledText size="default" style={{ color: theme.colors.error }}>
-            {error}
-          </StyledText>
-        )}
+        <StyledText size="default" style={{ color: theme.colors.error }}>
+          {error}
+        </StyledText>
       </View>
     </View>
   );
