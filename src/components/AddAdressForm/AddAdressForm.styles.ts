@@ -14,11 +14,11 @@ export const getStyles = () => {
       paddingHorizontal: 24,
       position: 'absolute',
       width: '100%',
-      gap: 30
+      gap: 10
     },
     updateBtn: {
       backgroundColor: theme.colors.default,
-      marginTop: 20,
+      marginTop: 10,
       height: 50,
       width: '100%',
       justifyContent: 'center',
@@ -26,7 +26,7 @@ export const getStyles = () => {
       borderRadius: theme.borderRadius.regular,
     },
     input: {
-      marginTop: 20,
+      marginTop: 10,
       marginBottom: 5,
     },
   });

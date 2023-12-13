@@ -8,7 +8,6 @@ export const getStyles = (props?: any) =>
       flex: 1,
     },
     form: {
-      flex: 1,
       minHeight: props?.height ? props?.height - 100 : 'auto',
       justifyContent: 'flex-start',
       paddingVertical: 52,
