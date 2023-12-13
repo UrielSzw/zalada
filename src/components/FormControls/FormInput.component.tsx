@@ -9,7 +9,7 @@ type Props = StyledTextInputProp & {
   rules?: any;
 };
 
-export const FormInput: React.FC<Props> = ({ control, errors, name, rules, style, ...rest }) => {
+export const FormInput: React.FC<Props> = ({ control, errors, name, rules, ...rest }) => {
   return (
     <Controller
       control={control}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, FlatList } from 'react-native';
+import { View, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { useQuery } from '@tanstack/react-query';
@@ -64,47 +64,49 @@ export const Home = ({ navigation }: any) => {
           }}
         </Formik>
       </View>
-      <View style={styles.body}>
-        <Loader isLoading={isLoading} skeleton={<BannerSkeleton />}>
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={productsList}
-            renderItem={({ item, index }) => (
-              <Banner
-                key={index}
-                product={item}
-                style={styles.sliderItem}
-                navigation={navigation}
-              />
-            )}
-            contentContainerStyle={{
-              gap: 15,
-            }}
-          />
-        </Loader>
-        <View style={styles.row}>
-          <StyledText variant="h4">Featured Products</StyledText>
-          <TouchableOpacity>
-            <StyledText color="gray40" onPress={() => navigation.navigate(PATHS.PLP)}>
-              See All
-            </StyledText>
-          </TouchableOpacity>
+      <ScrollView style={styles.body}>
+        <View style={{ paddingBottom: 30 }}>
+          <Loader isLoading={isLoading} skeleton={<BannerSkeleton />}>
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={productsList}
+              renderItem={({ item, index }) => (
+                <Banner
+                  key={index}
+                  product={item}
+                  style={styles.sliderItem}
+                  navigation={navigation}
+                />
+              )}
+              contentContainerStyle={{
+                gap: 15,
+              }}
+            />
+          </Loader>
+          <View style={styles.row}>
+            <StyledText variant="h4">Featured Products</StyledText>
+            <TouchableOpacity>
+              <StyledText color="gray40" onPress={() => navigation.navigate(PATHS.PLP)}>
+                See All
+              </StyledText>
+            </TouchableOpacity>
+          </View>
+          <Loader isLoading={isLoading} skeleton={<ProductCardItemSkeleton.home />}>
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={productsList?.reverse()}
+              renderItem={({ item, index }) => (
+                <ProductCardItem key={index} product={item} navigation={navigation} />
+              )}
+              contentContainerStyle={{
+                gap: 15,
+              }}
+            />
+          </Loader>
         </View>
-        <Loader isLoading={isLoading} skeleton={<ProductCardItemSkeleton.home />}>
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={productsList?.reverse()}
-            renderItem={({ item, index }) => (
-              <ProductCardItem key={index} product={item} navigation={navigation} />
-            )}
-            contentContainerStyle={{
-              gap: 15,
-            }}
-          />
-        </Loader>
-      </View>
+      </ScrollView>
     </>
   );
 };
