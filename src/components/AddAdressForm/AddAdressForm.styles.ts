@@ -12,9 +12,8 @@ export const getStyles = () => {
     },
     buttonsWrapper: {
       paddingHorizontal: 24,
-      position: 'absolute',
       width: '100%',
-      gap: 10
+      gap: 25,
     },
     updateBtn: {
       backgroundColor: theme.colors.default,

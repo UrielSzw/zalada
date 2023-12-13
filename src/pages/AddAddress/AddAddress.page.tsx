@@ -16,8 +16,7 @@ export const AddAddress = ({ route }: any) => {
     formState: { errors },
   } = useForm();
   const [showSuccesModal, setshowSuccessModal] = useState(false);
-  const { height } = Dimensions.get('window');
-  const styles = getStyles({ height });
+  const styles = getStyles();
 
   const { mutate } = useMutation({
     mutationKey: [queryKeys.address],
