@@ -44,8 +44,8 @@ export const getStyles = () => {
       borderRadius: theme.borderRadius.regular,
     },
     input: {
-      marginTop: 20,
-      marginBottom: 5,
+      marginTop: 0,
+      marginBottom: 2,
     },
   });
 };

@@ -20,9 +20,7 @@ export const getStyles = () => {
     contentWrapper: {
       marginTop: 16,
       paddingHorizontal: 24,
-    },
-    buttonsWrapper: {
-      marginBottom: 20,
+      marginBottom: 40,
     },
     signupLink: {
       color: 'white',
@@ -36,6 +34,9 @@ export const getStyles = () => {
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: theme.borderRadius.regular,
+    },
+    spacer: {
+      marginBottom: 2,
     },
   });
 };

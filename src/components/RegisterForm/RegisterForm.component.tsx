@@ -1,54 +1,125 @@
 import React from 'react';
 import { View, TouchableOpacity, Pressable, ScrollView } from 'react-native';
-import { FormikTextInput, StyledText } from '../';
+import { StyledText } from '../';
 import { PATHS } from '../../routes/paths';
+import { FormInput } from '../FormControls/FormInput.component';
 import { getStyles } from './RegisterForm.styles';
 
 type Props = {
-  handleSubmit: () => void;
-  isValid: boolean;
-  settriggerValidation: (flag: boolean) => void;
   navigation: any;
+  handleSubmit: () => void;
+  errors: any;
+  control: any;
 };
 
-export const RegisterForm: React.FC<Props> = ({
-  handleSubmit,
-  isValid,
-  settriggerValidation,
-  navigation,
-}) => {
+export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors, control }) => {
   const styles = getStyles();
 
   return (
     <ScrollView>
       <View style={styles.titleWrapper}>
-        <StyledText color="white" style={{ fontSize: 51 }}>
+        <StyledText color="white" style={{ fontSize: 51, marginTop: 52 }}>
           Register
         </StyledText>
       </View>
       <View style={styles.contentWrapper}>
-        <FormikTextInput name="firstName" placeholder="First Name" marginBottomError={5} />
-        <FormikTextInput name="lastName" placeholder="Last Name" marginBottomError={5} />
-        <FormikTextInput
-          name="email"
-          placeholder="E-mail"
-          inputMode="email"
-          marginBottomError={5}
+        <FormInput
+          name="firstName"
+          placeholder="First Name"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'First Name is required',
+          }}
+          style={styles.spacer}
         />
-        <FormikTextInput
+        <FormInput
+          name="lastName"
+          placeholder="Last Name"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'Last Name is required',
+          }}
+          style={styles.spacer}
+        />
+        <FormInput
+          name="email"
+          placeholder="Email"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'Email is required',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Email must be a valid format',
+            },
+          }}
+          style={styles.spacer}
+        />
+        <FormInput
           name="password"
           placeholder="Password"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'Password is required',
+          }}
           secureTextEntry
-          marginBottomError={5}
+          style={styles.spacer}
         />
-        <View style={{ display: 'flex', flexDirection: 'row' }}>
-          <FormikTextInput name="region" placeholder="City" marginBottomError={5} />
-          <View style={{ width: 20 }} />
-          <FormikTextInput name="postCode" placeholder="Postal Code" marginBottomError={5} />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <FormInput
+            name="region"
+            placeholder="City"
+            control={control}
+            errors={errors}
+            rules={{
+              required: 'City is required',
+            }}
+            style={styles.spacer}
+            width={'58%'}
+          />
+          <FormInput
+            name="postCode"
+            placeholder="Zip Code"
+            control={control}
+            errors={errors}
+            rules={{
+              required: 'Zip Code is required',
+            }}
+            style={styles.spacer}
+            width={'38%'}
+          />
         </View>
-        <FormikTextInput name="street" placeholder="Street" marginBottomError={5} />
-        <FormikTextInput name="telephone" placeholder="Telephone" marginBottomError={5} />
-        <View style={styles.buttonsWrapper}>
+        <FormInput
+          name="street"
+          placeholder="Street"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'Street is required',
+          }}
+          style={styles.spacer}
+        />
+        <FormInput
+          name="telephone"
+          placeholder="Telephone"
+          control={control}
+          errors={errors}
+          rules={{
+            required: 'Telephone is required',
+          }}
+          style={styles.spacer}
+        />
+        <View>
           <View style={styles.signupLink}>
             <StyledText color="white">Already registered? </StyledText>
             <TouchableOpacity>
@@ -57,16 +128,9 @@ export const RegisterForm: React.FC<Props> = ({
               </StyledText>
             </TouchableOpacity>
           </View>
-          <Pressable
-            style={styles.logInBtn}
-            onPress={() => {
-              console.log(isValid, 'isValid');
-              settriggerValidation(true);
-              handleSubmit();
-            }}
-          >
+          <Pressable style={styles.logInBtn} onPress={handleSubmit}>
             <StyledText color="white" weight="bold">
-              Log In
+              Register
             </StyledText>
           </Pressable>
         </View>
