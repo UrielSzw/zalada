@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, FlatList } from 'react-native';
+import { View, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { useQuery } from '@tanstack/react-query';
@@ -64,7 +64,7 @@ export const Home = ({ navigation }: any) => {
           }}
         </Formik>
       </View>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.body}>
           <Loader isLoading={isLoading} skeleton={<BannerSkeleton />}>
             <FlatList
@@ -104,7 +104,7 @@ export const Home = ({ navigation }: any) => {
             />
           </Loader>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };
