@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Pressable, ScrollView } from 'react-native';
 import { StyledText } from '../';
 import { PATHS } from '../../routes/paths';
 import { FormInput } from '../FormControls/FormInput.component';
-import { STYLES } from '../../utils';
 import { getStyles } from './RegisterForm.styles';
 
 type Props = {

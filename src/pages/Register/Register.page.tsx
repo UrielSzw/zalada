@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { PATHS } from '../../routes/paths';
@@ -40,9 +40,7 @@ export const Register = ({ navigation }: any) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const { height } = Dimensions.get('window');
-  const styles = getStyles({ height });
+  const styles = getStyles();
 
   const { mutate } = useMutation({
     mutationKey: [queryKeys.register],
