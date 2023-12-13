@@ -9,7 +9,7 @@ import { queryKeys } from '../../common/constants/queryKeys';
 import { BodyAddAddress, FormAddAddress } from '../../types';
 import { getStyles } from './AddAddress.styles';
 
-export const AddAddress = ({ navigation, route }: any) => {
+export const AddAddress = ({ route }: any) => {
   const {
     control,
     handleSubmit,
@@ -58,7 +58,6 @@ export const AddAddress = ({ navigation, route }: any) => {
             handleSubmit={handleSubmit}
             control={control}
             errors={errors}
-            navigation={navigation}
             handleOnSubmitUpdateAddress={handleOnSubmitUpdateAddress}
           />
         </ScrollView>
