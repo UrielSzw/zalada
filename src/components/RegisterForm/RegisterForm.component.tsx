@@ -120,7 +120,7 @@ export const RegisterForm: React.FC<Props> = ({ handleSubmit, navigation, errors
           }}
           style={styles.spacer}
         />
-        <View style={styles.buttonsWrapper}>
+        <View>
           <View style={styles.signupLink}>
             <StyledText color="white">Already registered? </StyledText>
             <TouchableOpacity>
