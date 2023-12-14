@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, FlatList } from 'react-native';
+import { View, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { useQuery } from '@tanstack/react-query';
@@ -64,12 +64,11 @@ export const Home = ({ navigation }: any) => {
           }}
         </Formik>
       </View>
-      <View style={styles.container}>
-        <View style={styles.body}>
+      <ScrollView style={styles.body}>
+        <View style={{ paddingBottom: 30 }}>
           <Loader isLoading={isLoading} skeleton={<BannerSkeleton />}>
             <FlatList
               horizontal
-              style={styles.horizontalScroll}
               showsHorizontalScrollIndicator={false}
               data={productsList}
               renderItem={({ item, index }) => (
@@ -80,6 +79,9 @@ export const Home = ({ navigation }: any) => {
                   navigation={navigation}
                 />
               )}
+              contentContainerStyle={{
+                gap: 15,
+              }}
             />
           </Loader>
           <View style={styles.row}>
@@ -93,18 +95,18 @@ export const Home = ({ navigation }: any) => {
           <Loader isLoading={isLoading} skeleton={<ProductCardItemSkeleton.home />}>
             <FlatList
               horizontal
-              style={styles.horizontalScroll}
               showsHorizontalScrollIndicator={false}
               data={productsList?.reverse()}
               renderItem={({ item, index }) => (
-                <View style={{ padding: 10, paddingLeft: 5 }} key={index}>
-                  <ProductCardItem product={item} navigation={navigation} />
-                </View>
+                <ProductCardItem key={index} product={item} navigation={navigation} />
               )}
+              contentContainerStyle={{
+                gap: 15,
+              }}
             />
           </Loader>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };
